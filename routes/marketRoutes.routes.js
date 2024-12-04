@@ -119,7 +119,7 @@ router.get('/stalls/availability', async (req, res) => {
     try {
         const { name, date } = req.query;
 
-        if (!location || !date) {
+        if (!name || !date) {
             return res.status(400).json({ message: 'Location and Date are required' });
         }
 
@@ -127,7 +127,7 @@ router.get('/stalls/availability', async (req, res) => {
         const formattedDate = moment(date, ["YYYY/MM/DD", "YYYY-MM-DD"]).format("YYYY/MM/DD");
 
         // Step 2: Retrieve all stalls for the specified location from the Stalls collection
-        const allStalls = await Stalls.find({ location });
+        const allStalls = await Stalls.find({ name });
 
         if (!allStalls.length) {
             return res.status(404).json({ message: 'No stalls found for this location' });
