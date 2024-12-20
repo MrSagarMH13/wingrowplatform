@@ -145,7 +145,7 @@ const RegisterComponent = (props) => {
       };
       try {
         await sendVerificationCode(payload);
-        console.log("OTP sent successfully");
+        
       } catch (error) {
         console.error("Error sending OTP:", error);
       }

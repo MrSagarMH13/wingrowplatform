@@ -43,7 +43,7 @@ export const reSendVerificationCode = async (payload) => {
 };
 
 export const verifyCode = async (payload) => {
-  console.log("Verification payload:", payload);
+  
   const url = `${MSG91_BASE_URL}/otp/verify?otp=${payload.otp}&mobile=${payload.mobile}`;
 
   try {
@@ -53,7 +53,7 @@ export const verifyCode = async (payload) => {
       },
     });
 
-    console.log(result);
+   
     
    
     if (result.status === 200 && result.data?.type === 'success') {

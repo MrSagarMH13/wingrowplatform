@@ -46,20 +46,20 @@ exports.getUser = async(req, res) => {
     // }
     exports.getSub = async(req,res) =>{
         const id= req.body.userId
-        console.log(id);
+    
         const data = await Subscribe.find({"userId" : id});
-        console.log(data)
+      
         res.status(200).json(data);
     }
     exports.getSubscribedData = async(req,res) =>{
-        console.log("inside subData")
+        
         const data = await Subscribe.find();
         if(!data){
-            console.log("No data")
+           
             res.status(404)
             return ;
         }
-        console.log(data)
+    
         res.status(200).json(data);
     }
     exports.changestatus= async(req,res) =>{
@@ -68,7 +68,7 @@ exports.getUser = async(req, res) => {
         const response = await Subscribe.findByIdAndUpdate({_id : id} , {status:status})
 
         if(!response){
-          console.log("helloooo")
+        
           res.status(400).json("something went wrong")
           
         }
@@ -82,12 +82,12 @@ exports.getUser = async(req, res) => {
         var firstF = Number(req.body.firstF)
         var secondF = Number(req.body.secondF)
         var thirdF = Number(req.body.thirdF)
-        console.log("here, ",id,stall,firstF,secondF,thirdF)
+       
         const response = await Subscribe.findByIdAndUpdate({_id : id} , {stalls:stall,first:firstF,second:secondF,third:thirdF})
 
         if(!response){
-          console.log("helloooo")
-          console.log("respons",response)
+       
+      
           res.status(404).json("something went wrong")
             return ;
         }
@@ -111,7 +111,7 @@ exports.getUser = async(req, res) => {
 
 
         }
-        console.log("success!!!!!")
+      
         //res.send(data)
         
         const postdata = await new Subscribe(data);
@@ -126,15 +126,15 @@ exports.getUser = async(req, res) => {
     }
     exports.deletecancelledStalls = async(req,res) =>{
         const id = req.body.id;
-        console.log(id)
+       
        // console.log(req.body)
         const deleted = await Subscribe.findByIdAndDelete(id);
             
         if(!deleted){
-          console.log("not deleted")
+         
           res.status(400).send("failed to delete")
         }else{
-            console.log("delete")
+           
             res.status(200).json(deleted)
         }
         
@@ -172,7 +172,7 @@ exports.postOutward = async(req,res,next) => {
         userId:id,
         time:req.body.time
     }
-console.log(data.total_sales)
+
     const postdata = await new Outward(data);
     const resp = await postdata.save();
 
@@ -196,7 +196,7 @@ exports.postInward = async(req,res,next) => {
         userId:id,
         time:req.body.time
     }
-console.log(data)
+
     const postdata = await new Inward(data);
     const resp = await postdata.save();
 
@@ -211,17 +211,17 @@ exports.getMarket = async(req,res) =>{
     const date = new Date().toISOString().split('T')[0];
     
     const data = await LiveMarket.find({"bookedAt" : String(date)});
-    console.log("hello",data)
+   
     res.send(data)
 }
 
 exports.getMarkets = async (req, res) => {
     try {
         const data = await LiveMarket.find({});
-        console.log("hello", data);
+       
         res.send(data);
     } catch (error) {
-        console.log(error);
+       
         res.status(500).send("Error retrieving markets");
     }
 };
@@ -240,7 +240,7 @@ exports.employeeDaily = async(req,res)=>{
     rating:req.body.rating
     }
     
-    console.log(data)
+   
     const postdata = await new Employee(data);
     const resp = await postdata.save();
 
@@ -260,7 +260,7 @@ exports.addMarket = async(req,res) =>{
         offers:req.body.tags,
         bookedAt:req.body.date
     }
-    console.log("success!!!!!")
+   
     //res.send(data)
     
     const postdata = await new LiveMarket(data);
@@ -318,7 +318,7 @@ exports.changeApproval = async (req,res)=>{
         const response = await Leave.findByIdAndUpdate({_id : id} , {appoved:status})
 
         if(!response){
-          console.log("helloooo")
+         
           res.status(400).json("something went wrong")
           
         }

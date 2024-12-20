@@ -83,7 +83,7 @@ export const logoutError = (payload) => {
 
 export const logout = () => {
   return (dispatch) => {
-    console.log("Logging out...");
+    
     dispatch(logoutStart());
     authService
       .postLogout()

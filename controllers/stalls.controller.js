@@ -17,7 +17,7 @@ exports.getStallsTemp = async (req, res) => {
 }
 exports.getbookedStallsTemp = async (req, res) => {
   const data = await BookedStalls.find()
-  console.log(data)
+ 
   res.send(data)
 }
 
@@ -27,7 +27,7 @@ exports.getbookedStallsTemp = async (req, res) => {
     if(!data){
       res.send(400)
     }else{
-      console.log(data)
+    
       res.send(data)
     }
     
@@ -56,7 +56,7 @@ exports.postStalls = async(req,res,next)=>{
 
   exports.postbookedStalls = async(req,res,next)=>{
     const {bookedStalls , isBooked , bookedBy , bookedAt} = req.body;
-    console.log("postbookedstalls")
+   
     if(bookedStalls && isBooked && bookedBy && bookedAt)
     {
       bookedStalls.forEach(async(e)=>{
@@ -87,7 +87,7 @@ exports.postStalls = async(req,res,next)=>{
 
 exports.deletebookedStalls = async(req,res) => {
   const {id} = req.body;
-  console.log("deleted")
+ 
   const deleted = await BookedStalls.findByIdAndDelete(id);
   
   if(!deleted){
@@ -111,7 +111,7 @@ exports.deletecancelledStalls = async(req,res) => {
 
 
 exports.postcancelledstalls = async(req,res)=>{
-console.log("post canccelled stalls")
+
 const {stallName, cancelledAt , bookedAt , bookedBy , isBooked ,stallNo,location,stallPrice,address,phone,firstname,lastname} = req.body;
 
 const response = {
@@ -129,10 +129,10 @@ const response = {
       stallNo:stallNo,
       isBooked:isBooked
 }
-console.log("response -- ",response);
+
 const data = await new CancelledStalls(response);
 const resp = data.save();
-console.log("saved sucessfully")
+
 if(!resp){
   res.status(400).json("success")
 }
@@ -140,7 +140,7 @@ res.status(200).send(resp)
 }
   
  exports.putStalls = async(req,res,next)=>{
-  console.log("inside put stalls")
+  
     const {data , user , time} = req.body;
   
     const updata = await Stalls.updateMany({_id : {$in:data}} , {isBooked:true , bookedBy:user , bookedAt:time})

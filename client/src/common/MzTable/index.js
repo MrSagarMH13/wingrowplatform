@@ -89,7 +89,7 @@ const MzTable = (props) => {
   const toBeDeletedRecordId = useRef(-1);
 
   const onColumnToggle = (event) => {
-    console.log("event--------", event);
+   
     let selectedColumns = event.value;
     let orderedSelectedColumns = columns.filter((col) =>
       selectedColumns.some((sCol) => sCol.dataKey === col.dataKey)
@@ -460,7 +460,7 @@ const MzTable = (props) => {
 
   const handleToggleActive = (rowData, newValue) => {
     onDeleteRecord(rowData);
-    console.log("Toggle active status for", rowData.id, "to", newValue);
+    
   };
 
   const getColumnProps = (column) => {

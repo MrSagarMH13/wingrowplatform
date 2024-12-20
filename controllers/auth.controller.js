@@ -27,10 +27,10 @@ exports.signup = async (req, res, next) => {
     employeeID,
     desigination,
   } = req.body;
-  console.log(req.body);
+  
   const userdata = await User.find({ phone: phone, role: type });
 
-  console.log(userdata[0]);
+  
   if (userdata[0]) {
     res.status(400).json({
       success: false,
@@ -116,10 +116,10 @@ exports.checkPhone = async (req, res) => {
     phone: req.body.phone,
   }).exec((err, user) => {
     if (user.role === req.body.role) {
-      console.log("user found", user);
+     
       return res.status(404).send({ message: "Found" });
     } else {
-      console.log("user not found ");
+     
       return res.status(200).send({ message: "NFound" });
     }
   });
@@ -176,7 +176,7 @@ exports.checkPhone = async (req, res) => {
 //   };
 
 exports.signin = async (req, res) => {
-  console.log(req.body);
+  
   const user = await User.findOne({
     phone: req.body.phone,
     role: req.body.role,
@@ -224,10 +224,10 @@ exports.adminSignUp = async (req, res) => {
     employeeID,
     desigination,
   } = req.body;
-  console.log(phone);
+  
   const userdata = await User.find({ phone: phone, role: role });
 
-  console.log(userdata[0]);
+ 
   if (userdata[0]) {
     res.status(400).json({
       success: false,
@@ -292,7 +292,7 @@ exports.postPic = async (req, res) => {
   const { id } = jwt_decode(token);
   const file = req.files.photo;
   const data = await cloudinary.uploader.upload(file.tempFilePath);
-  console.log(data);
+
   if (data) {
     const response = await User.findByIdAndUpdate(
       { _id: id },
@@ -300,20 +300,20 @@ exports.postPic = async (req, res) => {
     );
 
     if (!response) {
-      console.log("helloooo");
+     
       res.status(400).json("something went wrong");
     }
 
     res.status(200).send(response);
   } else {
-    console.log("hello");
+    
     res.status(400).json("something went wrong");
   }
 };
 
 exports.addAddress = async (req, res) => {
   const { address } = req.body;
-  console.log("the address is ", address);
+  
   //console.log(address)
   try {
     let token = req.headers["x-access-token"];

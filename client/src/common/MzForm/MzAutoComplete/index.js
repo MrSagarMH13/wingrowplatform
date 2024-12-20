@@ -33,7 +33,7 @@ const MzAutoComplete = ({
 
   const search = (event) => {
     const query = event.query;
-    console.log('Suggestions:', suggestions); // Check the structure and contents
+ // Check the structure and contents
     let _filteredSuggestions = [];
   
     if (!query.trim().length) {

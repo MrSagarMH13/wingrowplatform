@@ -412,7 +412,7 @@ export const postApiAsyn = async (type, data, token) => {
 
 
 export const postApiAsynWithoutToken = async (type ) => {
-  console.log("type-----",type);
+  
     let result = await fetch(type, {
       headers: {
         "Content-Type": "application/json",
@@ -421,19 +421,19 @@ export const postApiAsynWithoutToken = async (type ) => {
       method: "POST",
     })
       .then((resposne) => {
-        console.log(resposne);
+       
         // loadingShow("none");
         if (resposne.status === 401) {
         }
         return resposne.json();
       })
       .then((data) => {
-        console.log(data);
+        
         data["APIResult"] = 1;
         return data;
       })
       .catch((error) => {
-        console.log(error);
+       
         // loadingShow("none");
         error["APIResult"] = 0;
         if (error.TypeError) {

@@ -38,7 +38,7 @@ export const fetchStallList = async (payload) => {
 // };
 
 export const fetchStallBookList = async (payload) => {
-  console.log(payload);
+ 
   const url = `${baseUrl}${API_PATH.STALL.BOOK}`;
   const token = localStorage.getItem("token");
   try {

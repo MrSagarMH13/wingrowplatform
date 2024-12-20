@@ -87,7 +87,7 @@ export const getDecoratedUrl = ({
 const decorateWithTypesParams = (payload) => {
   if (Object.hasOwn(payload, "params")) {
     let  res= `?type=${payload?.params}`;
-    console.log(res);
+    
      return res
   }
   return "";

@@ -5,7 +5,7 @@ import { baseUrl } from "../PostAPI";
 export const fetchFarmerList = async () => {
   try {
     const result = await axios.get(`${baseUrl}${API_PATH.FARMER.FETCH_LIST}`);
-    console.log(result);
+    
     if (result.status === 200) {
       return result;
     } else {
@@ -24,7 +24,7 @@ export const fetchFarmerList = async () => {
 export const fetchCustomerList = async () => {
     try {
       const result = await axios.get(`${baseUrl}${API_PATH.CUSTOMER.FETCH_LIST}`);
-      console.log(result);
+      
       if (result.status === 200) {
         return result;
       } else {
@@ -43,7 +43,7 @@ export const fetchCustomerList = async () => {
   export const fetchCancelledStallsList = async () => {
     try {
       const result = await axios.get(`${baseUrl}${API_PATH.CANCELLED_STALLS.FETCH_LIST}`);
-      console.log(result);
+      
       if (result.status === 200) {
         return result;
       } else {

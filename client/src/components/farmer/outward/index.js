@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FORM_FIELDS_NAME } from "./constant";
 import MzInput from "../../../common/MzForm/MzInput";
+import jwt_decode from "jwt-decode";
 import { Button } from "primereact/button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MzAutoComplete from "../../../common/MzForm/MzAutoComplete";
@@ -28,7 +29,7 @@ const AddOutwardComponent = (props) => {
     initOutward,
   } = props.addOutwardProps;
 
-  console.log(isOutwardDetailSuccess);
+ 
   const {
     control,
     formState: { errors, isDirty },
@@ -39,7 +40,7 @@ const AddOutwardComponent = (props) => {
     reset,
   } = useForm({
     defaultValues: useMemo(() => {
-      // console.log("check value come or not", formFieldValueMap);
+     
       return formFieldValueMap;
     }, [formFieldValueMap]),
     mode: "onChange",
@@ -150,23 +151,24 @@ const AddOutwardComponent = (props) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    
+    const token = localStorage.getItem("token");
+
+    let userId = null;
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      userId = decodedToken?.id;
+    }
+   
+    
+  
     const payload = {
-      // date: data?.date
-      //   ? moment(data.date, "YYYY/MM/DD")
-      //       .set({
-      //         hour: moment().hour(),
-      //         minute: moment().minute(),
-      //         second: moment().second(),
-      //         millisecond: moment().millisecond(),
-      //       })
-      //       .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
-      //   : null,
       date: data?.date ? moment(data.date).format("YYYY/MM/DD") : null,
-      market: data?.market,
-      commodity: data?.commodity,
+      name: data?.market,
+      commodities: data?.commodity,
       sales_rate: data?.saleRate,
       remaining_sale: data?.remainingSale,
+      userId
     };
     createOutwardRecord(payload);
   };
@@ -251,9 +253,9 @@ const AddOutwardComponent = (props) => {
                         showButtonBar={false}
                         className="w-full"
                         isError={errors[FORM_FIELDS_NAME.B_DATE.name]}
-                        // errorMsg={getFormErrorMessage(
-                        //   FORM_FIELDS_NAME.B_DATE.name,
-                        // )}
+                      // errorMsg={getFormErrorMessage(
+                      //   FORM_FIELDS_NAME.B_DATE.name,
+                      // )}
                       />
                     )}
                   />
@@ -311,7 +313,7 @@ const AddOutwardComponent = (props) => {
                     <Button
                       label="Add"
                       className="mt-3 border-round-sm"
-                      // severity="danger"
+                    // severity="danger"
                     />
                   </div>
                   <div className="mb-3 w-full">

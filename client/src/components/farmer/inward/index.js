@@ -5,7 +5,7 @@ import MzInput from "../../../common/MzForm/MzInput";
 import { Button } from "primereact/button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MzAutoComplete from "../../../common/MzForm/MzAutoComplete";
-
+import jwt_decode from "jwt-decode";
 import { WINGROW_LOGO } from "../../../assets/images";
 import { useTranslation } from "react-i18next";
 import { API_PATH, ROUTE_PATH } from "../../../constant/urlConstant";
@@ -39,7 +39,7 @@ const AddInwardComponent = (props) => {
     getValues,
   } = useForm({
     defaultValues: useMemo(() => {
-      // console.log("check value come or not", formFieldValueMap);
+
       return formFieldValueMap;
     }, [formFieldValueMap]),
     mode: "onChange",
@@ -148,22 +148,21 @@ const AddInwardComponent = (props) => {
   };
 
   const onSubmit = (data) => {
+    const token = localStorage.getItem("token");
+
+    let userId = null;
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      userId = decodedToken?.id;
+    }
     const payload = {
-      // date: data?.date
-      //   ? moment(data.date, "YYYY/MM/DD")
-      //       .set({
-      //         hour: moment().hour(),
-      //         minute: moment().minute(),
-      //         second: moment().second(),
-      //         millisecond: moment().millisecond(),
-      //       })
-      //       .format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
-      //   : null,
       date: data?.date ? moment(data.date).format("YYYY/MM/DD") : null,
-      market: data?.market,
-      commodity: data?.commodity,
+      name: data?.market,
+      commodities: data?.commodity,
       purchase_quantity: data?.purchaseQuantity,
       purchase_rate: data?.purchaseRate,
+      userId,
+
     };
     createInwardRecord(payload);
   };
@@ -248,9 +247,9 @@ const AddInwardComponent = (props) => {
                         showButtonBar={false}
                         className="w-full"
                         isError={errors[FORM_FIELDS_NAME.B_DATE.name]}
-                        // errorMsg={getFormErrorMessage(
-                        //   FORM_FIELDS_NAME.B_DATE.name,
-                        // )}
+                      // errorMsg={getFormErrorMessage(
+                      //   FORM_FIELDS_NAME.B_DATE.name,
+                      // )}
                       />
                     )}
                   />
@@ -308,7 +307,7 @@ const AddInwardComponent = (props) => {
                     <Button
                       label="Add"
                       className="mt-3 border-round-sm"
-                      // severity="danger"
+                    // severity="danger"
                     />
                   </div>
                   <div className="mb-3 w-full">

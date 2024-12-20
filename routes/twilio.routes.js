@@ -26,7 +26,7 @@ module.exports = function (app) {
 
         response.on('end', function () {
           const body = Buffer.concat(chunks);
-          console.log(body.toString());
+          
         });
       });
       const phone = "91"+ String(farmer.phone);

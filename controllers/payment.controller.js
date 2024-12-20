@@ -23,10 +23,10 @@ const ordersApi = async(req,res)=>
 
         }
         else{
-            console.log(response);
+           
             const responseData=JSON.parse(response);
             const redirectUrl=responseData.payment_request.longurl;
-            console.log(redirectUrl);
+           
             res.status(200).json(redirectUrl);
         }
     });

@@ -41,7 +41,7 @@ const PaymentPage = (props) => {
     checkScriptLoaded();
   }, []);
 
-  console.log("selectedStalls123", selectedStalls);
+  
 
   const formatDate = (dateString) => {
     let date = new Date(dateString);
@@ -62,7 +62,7 @@ const PaymentPage = (props) => {
     })),
   }));
 
-  console.log(selectedStallsPayload);
+ 
 
   const handlePayment = async () => {
     if (!scriptLoaded) {
@@ -92,14 +92,14 @@ const PaymentPage = (props) => {
             selectedStallsPayload
           );
 
-          console.log("selectedStallsPayload", selectedStallsPayload);
+      
 
           toast.current.show({
             severity: "success",
             summary: "Success",
             detail: "Stalls booked successfully",
           });
-          console.log("API Response:", apiResponse.data);
+        
           onPaymentSuccess();
         } catch (error) {
           console.error("Error booking stalls after payment:", error);

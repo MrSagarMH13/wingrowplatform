@@ -31,7 +31,7 @@ export const fetchStallListError = (error) => ({
 });
 
 export const fetchStallList = (payload) => {
-  console.log(payload);
+ 
   return (dispatch) => {
     dispatch(fetchStallListStart(payload));
     stallService.fetchStallList(payload).then((stallData) => {
@@ -64,7 +64,7 @@ export const fetchStallListBookError = (error) => {
   };
 };
 export const fetchStallBookList = (payload) => {
-  console.log(payload);
+  
   return (dispatch) => {
     dispatch(fetchStallListBookStart(payload));
     stallService.fetchStallBookList(payload).then((stallData) => {
@@ -98,7 +98,7 @@ export const fetchStallListBookByUserError = (error) => {
 };
 
 export const fetchStallBookByUserList = (payload) => {
-  console.log(payload);
+ 
   return (dispatch) => {
     dispatch(fetchStallListBookByUserStart(payload));
     stallService.fetchStallBookByUserList(payload).then((stallData) => {

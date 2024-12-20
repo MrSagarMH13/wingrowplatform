@@ -116,7 +116,7 @@ const in_out_wardReducer = (state = initialState, action) => {
           console.log("Error parsing otherLinks:", error);
         }
       }
-      console.log(linkobj);
+      
       return {
         ...state,
 

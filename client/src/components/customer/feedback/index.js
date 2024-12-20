@@ -31,13 +31,13 @@ export default function FeedbackComponent() {
   const userId = user?.id
   const toast = useRef(null);
   const onSubmit = async (data) => {
-    console.log(data);
+    
     const payload={
       userId:userId,
       message: data.message,  
       stars: data.rating, 
     }
-    console.log(payload)
+   
     try {
       const response = await axios.post(`${baseUrl}${API_PATH.FEEDBACK.POST}`, payload);
       toast.current.show({
@@ -70,7 +70,7 @@ export default function FeedbackComponent() {
   };
 
   const handleRatingChange = (event) => {
-    console.log(event);
+    
     setValue(FORM_FIELDS_NAME.RATING.name, event?.value);
   };
 

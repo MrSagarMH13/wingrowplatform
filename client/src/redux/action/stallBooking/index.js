@@ -29,7 +29,7 @@ import {
   });
   
   export const createMultipleStallBook = (payload) => {
-    console.log(payload);
+    
     return (dispatch) => {
       dispatch(createMultipleStallBookStart(payload));
       stallBookingService.bookMultipleStalls(payload).then((stallBookingData) => {
