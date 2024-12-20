@@ -117,10 +117,10 @@ const MyBookingComponent = (props) => {
                               : "Booking Cancelled"}
                           </span>
                         </li>
-                        <li className="flex align-items-center mb-3">
+                        {/* <li className="flex align-items-center mb-3">
                           <i className="pi pi-map-marker text-green-500 mr-2"></i>
                           <span className="text-left">{stall.address}</span>
-                        </li>
+                        </li> */}
                       </ul>
                       <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
                       <Button

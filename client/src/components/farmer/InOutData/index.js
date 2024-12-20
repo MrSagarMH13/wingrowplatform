@@ -16,9 +16,9 @@ import { baseUrl } from "../../../services/PostAPI";
 import { API_PATH } from "../../../constant/urlConstant";
 import moment from "moment";
 
-const InOutData = (props) => {
+const InOutData = props => {
   const { outwardList, inwardList, handleFetchInwardRecord, isloading } =
-    props.InOutwardProps;
+    props.InOutwardProps
 
   const {
     control,
@@ -26,82 +26,82 @@ const InOutData = (props) => {
     handleSubmit,
     watch,
   } = useForm({
-    mode: "onChange",
-    reValidateMode: "onChange",
-  });
-  const [filteredOutwardList, setFilteredOutwardList] = useState([]);
-  const [filteredInwardList, setFilteredInwardList] = useState([]);
-  const [marketData, setMarkets] = useState([]);
-  const [inoutData,setinoutData]=useState('');
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  })
+  const [filteredOutwardList, setFilteredOutwardList] = useState([])
+  const [filteredInwardList, setFilteredInwardList] = useState([])
+  const [marketData, setMarkets] = useState([])
+  const [inoutData, setinoutData] = useState('')
   const data = {
     labels: [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ], // Days of the week
     datasets: [
       {
-        label: "Market Sales",
+        label: 'Market Sales',
         data: [500, 700, 800, 600, 900, 1200, 950], // Market sales for each day
-        backgroundColor: "#66BB6A",
-        borderColor: "#66BB6A", // Border color
+        backgroundColor: '#66BB6A',
+        borderColor: '#66BB6A', // Border color
         borderWidth: 1,
       },
     ],
-  };
+  }
   useEffect(() => {
     const fetchMarketData = async () => {
       try {
         // const response = await axios.get(`${baseUrl}/api/markets`);
         const response = await axios.get(
-          `${baseUrl}${API_PATH.MARKET.FETCH_LIST}`
-        );
-        setMarkets(response?.data?.markets);
+          `${baseUrl}${API_PATH.MARKET.FETCH_LIST}`,
+        )
+        setMarkets(response?.data?.markets)
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    };
+    }
 
-    fetchMarketData();
-  }, []);
-  const getDisabledDays = (marketDay) => {
-    const allDays = [0, 1, 2, 3, 4, 5, 6];
+    fetchMarketData()
+  }, [])
+  const getDisabledDays = marketDay => {
+    const allDays = [0, 1, 2, 3, 4, 5, 6]
     const marketDayIndex = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ].indexOf(marketDay);
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ].indexOf(marketDay)
 
     if (marketDayIndex === -1) {
-      return allDays;
+      return allDays
     }
-    const disabled = allDays.filter((day) => day !== marketDayIndex);
-    return disabled;
-  };
+    const disabled = allDays.filter(day => day !== marketDayIndex)
+    return disabled
+  }
 
-  const [marketDay, setMarketDay] = useState("");
+  const [marketDay, setMarketDay] = useState('')
 
   useEffect(() => {
-    const selectedMarketName = watch(FORM_FIELDS_NAME.MARKET.name);
+    const selectedMarketName = watch(FORM_FIELDS_NAME.MARKET.name)
     const getMarketDay = marketData.find(
-      (item) => item.name === selectedMarketName ?? ""
-    )?.marketDay;
+      item => item.name === selectedMarketName ?? '',
+    )?.marketDay
     // const disabled = getDisabledDays(getMarketDay);
-    setMarketDay(getMarketDay);
-  }, [watch(FORM_FIELDS_NAME.MARKET.name)]);
+    setMarketDay(getMarketDay)
+  }, [watch(FORM_FIELDS_NAME.MARKET.name)])
 
   // const onSubmit =async (data) => {
   //   const token = localStorage.getItem("token");
   //   const userId = token ? jwt_decode(token)?.id : null;
-    
+
   //   const params = {
   //     userId:userId,
   //     name: data.market,
@@ -113,13 +113,13 @@ const InOutData = (props) => {
   //     const queryString = `userId=${userId}&name=${data.market}&date=${params.date}`;
   //     console.log("queryString",queryString);
   //     const response =  await axios.get(`${baseUrl}/inwardoutward?${queryString}`, {  headers: {
-  //       Authorization: `Bearer ${token}`, 
+  //       Authorization: `Bearer ${token}`,
   //     },params });
   //     console.log("response",response);
   //     setinoutData(response);
   //   } catch (error) {
   //     console.error("Error fetching data:", error);
-     
+
   //   }
   //   // handleFetchInwardRecord();
   //   // const selectedMarket = data.market;
@@ -137,85 +137,80 @@ const InOutData = (props) => {
   //   // setFilteredOutwardList({ selectedMarket, dateValue });
   //   // setFilteredInwardList({ selectedMarket, dateValue });
   // };
-  const onSubmit = async (data) => {
-    const token = localStorage.getItem("token");
-    const userId = token ? jwt_decode(token)?.id : null;
-  
+  const onSubmit = async data => {
+    const token = localStorage.getItem('token')
+    const userId = token ? jwt_decode(token)?.id : null
+
     if (!userId || !data.market || !data.date) {
-      console.error("Missing required fields: userId, market, or date");
-      return;
+      console.error('Missing required fields: userId, market, or date')
+      return
     }
-  
+
     const params = {
       userId: userId,
       name: data.market,
-      date: data?.date ? moment(data.date).format("YYYY/MM/DD") : null,
-    };
-  
-  
-  
-    try {
-      const response = await axios.get(`${baseUrl}/inwardoutward`, {
-        headers: {
-          "x-access-token": token, 
-        },
-        params, 
-      });
-      setinoutData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+      date: data?.date ? moment(data.date).format('YYYY/MM/DD') : null,
     }
-  };
-  
+
+    try {
+      const response = await axios.get(`${baseUrl}/inward-outward`, {
+        headers: {
+          'x-access-token': token,
+        },
+        params,
+      })
+      setinoutData(response.data)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }
 
   // Effect that runs when filteredOutwardList or filteredInwardList are set
   useEffect(() => {
     if (filteredOutwardList?.selectedMarket && filteredOutwardList?.dateValue) {
       const filtered = outwardList?.filter(
-        (item) =>
+        item =>
           item.market === filteredOutwardList.selectedMarket &&
-          item.time === filteredOutwardList.dateValue
-      );
-      setFilteredOutwardList(filtered);
+          item.time === filteredOutwardList.dateValue,
+      )
+      setFilteredOutwardList(filtered)
     }
-  }, [filteredOutwardList]);
+  }, [filteredOutwardList])
 
   useEffect(() => {
     if (filteredInwardList?.selectedMarket && filteredInwardList?.dateValue) {
       const filteredInward = inwardList.filter(
-        (item) =>
+        item =>
           item.market === filteredInwardList.selectedMarket &&
-          item.time === filteredInwardList.dateValue
-      );
-      setFilteredInwardList(filteredInward);
+          item.time === filteredInwardList.dateValue,
+      )
+      setFilteredInwardList(filteredInward)
     }
-  }, [filteredInwardList]);
-  const getFormErrorMessage = (name) => {
+  }, [filteredInwardList])
+  const getFormErrorMessage = name => {
     return (
-      errors[name] && <small className="p-error">{errors[name].message}</small>
-    );
-  };
+      errors[name] && <small className='p-error'>{errors[name].message}</small>
+    )
+  }
 
   return (
-    <div className="w-full">
-      <div className="p-2 md:px-3 md:py-6 w-full  text-center md:flex align-items-center justify-content-center relative">
+    <div className='w-full'>
+      <div className='p-2 md:px-3 md:py-6 w-full  text-center md:flex align-items-center justify-content-center relative'>
         <Link
-          to="/farmer"
-          className="text-d-none absolute"
-          style={{ left: "5%" }}
-        >
+          to='/farmer'
+          className='text-d-none absolute'
+          style={{ left: '5%' }}>
           <Button
-            className="p-button-rounded flex justify-content-start"
-            icon="pi pi-angle-left mr-2"
-          >
+            className='p-button-rounded flex justify-content-start'
+            icon='pi pi-angle-left mr-2'>
             back
           </Button>
         </Link>
       </div>
-      <div className="data-container">
-        <form onSubmit={handleSubmit(onSubmit)} className="data-form">
-          <div className="flex row justify-content-between align-items-center">
-            <div className="market-dropdown-section col-6">
+      <div className='data-container'>
+        <form onSubmit={handleSubmit(onSubmit)} className='data-form'>
+          <div className='flex row justify-content-between align-items-center'>
+            <div className='market-dropdown-section col-6'>
               <MzAutoComplete
                 control={control}
                 name={FORM_FIELDS_NAME.MARKET.name}
@@ -230,10 +225,10 @@ const InOutData = (props) => {
                 dropdown
               />
             </div>
-            <div className="calendar-section col-6" id="calender">
-              <div className="">
-                <label htmlFor="date">
-                  Select Date<span className="required">*</span>
+            <div className='calendar-section col-6' id='calender'>
+              <div className=''>
+                <label htmlFor='date'>
+                  Select Date<span className='required'>*</span>
                 </label>
                 <Controller
                   disabled={!watch(FORM_FIELDS_NAME.MARKET.name)}
@@ -243,7 +238,7 @@ const InOutData = (props) => {
                   render={({ field }) => (
                     <Calendar
                       {...field}
-                      id="date"
+                      id='date'
                       name={FORM_FIELDS_NAME.B_DATE.name}
                       // value={dates[selectedMarket]}
                       // onChange={e => handleDateChange(e, field)}
@@ -253,23 +248,23 @@ const InOutData = (props) => {
                       maxDate={new Date()}
                       showIcon={true}
                       showButtonBar={false}
-                      className="w-full"
-                      dateFormat="dd/mm/yy"
+                      className='w-full'
+                      dateFormat='dd/mm/yy'
                       isError={!!errors[FORM_FIELDS_NAME.B_DATE.name]}
                       errorMsg={getFormErrorMessage(
-                        FORM_FIELDS_NAME.B_DATE.name
+                        FORM_FIELDS_NAME.B_DATE.name,
                       )}
                     />
                   )}
                 />
               </div>
             </div>
-            <div className="flex justify-content-end ">
+            <div className='flex justify-content-end '>
               <Button
-                type="submit"
-                label="Search"
+                type='submit'
+                label='Search'
                 // onClick={handleFetchInwardRecord}
-                className="border-2 border-round-md md:w-6rem mr-2"
+                className='border-2 border-round-md md:w-6rem mr-2'
                 disabled={isloading}
               />
             </div>
@@ -277,36 +272,34 @@ const InOutData = (props) => {
         </form>
         <h5>Inward Data</h5>
         <hr />
-        <div className="grid mt-3 mb-3">
-          {filteredInwardList && filteredInwardList.length > 0 ? (
-            filteredInwardList.map((inwardList, index) => (
-              <div key={index} className="col-12 md:col-6 lg:col-3">
-                <div className="h-full test">
-                  <div className="img-cover"></div>
-                  <div className="overlay"></div>
-                  <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                    <div className="flex justify-content-between mb-2">
+        <div className='grid mt-3 mb-3'>
+          {inoutData?.inward?.length > 0 ? (
+            inoutData?.inward.map((inward, index) => (
+              <div key={index} className='col-12 md:col-6 lg:col-3'>
+                <div className='h-full test'>
+                  <div className='img-cover'></div>
+                  <div className='overlay'></div>
+                  <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
+                    <div className='flex justify-content-between mb-2'>
                       <div>
-                        <span className="text-900 mb-3">
-                          {inwardList?.commodity}
-                        </span>
-                        <div className="text-900 font-medium text-xl text-white">
-                          {inwardList?.market}
+                        <span className='text-900 mb-3'>{inward.name}</span>
+                        <div className='text-900 font-medium text-xl text-white'>
+                          {inward.market}
                         </div>
                       </div>
                     </div>
-                    <div className="text-red-900">
-                      Purchase Rate: {inwardList?.purchase_rate}
+                    <div className='text-red-900'>
+                      Purchase Rate: {inward.purchase_rate}
                     </div>
-                    <div className="text-red-900">
-                      Purchase Quantity: {inwardList?.purchase_quantity}
+                    <div className='text-red-900'>
+                      Purchase Quantity: {inward.purchase_quantity}
                     </div>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-12 text-center">
+            <div className='col-12 text-center'>
               <p>No inward data available.</p>
             </div>
           )}
@@ -314,26 +307,26 @@ const InOutData = (props) => {
 
         <h5>Outward Data</h5>
         <hr />
-        <div className="grid mt-3 mb-3">
-          {filteredOutwardList && filteredOutwardList.length > 0 ? (
-            filteredOutwardList.map((outWardList, index) => (
-              <div key={index} className="col-12 md:col-6 lg:col-3">
-                <div className="h-full test">
-                  <div className="img-cover"></div>
-                  <div className="overlay"></div>
-                  <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                    <div className="text-red-900">{outWardList?.commodity}</div>
-                    <span>{outWardList?.market}</span>
+        <div className='grid mt-3 mb-3'>
+          {inoutData?.outward?.length > 0 ? (
+            inoutData?.outward.map((outward, index) => (
+              <div key={index} className='col-12 md:col-6 lg:col-3'>
+                <div className='h-full test'>
+                  <div className='img-cover'></div>
+                  <div className='overlay'></div>
+                  <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
+                    <div className='text-red-900'>{outward.name}</div>
+                    <span>{outward.market}</span>
                     <br />
-                    <span className="text-black">
-                      Sales Rate: {outWardList?.sales_rate}
+                    <span className='text-black'>
+                      Sales Rate: {outward.sales_rate}
                     </span>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <div className="col-12 text-center">
+            <div className='col-12 text-center'>
               <p>No outward data available.</p>
             </div>
           )}
@@ -374,50 +367,50 @@ const InOutData = (props) => {
         </div> */}
         <h5>Cummulative Sales Data</h5>
         <hr />
-        <div className="grid mt-3 mb-3">
-          <div className="col-12 md:col-6 lg:col-3">
-            <div className="h-full test">
-              <div className="img-cover"></div>
-              <div className="overlay"></div>
-              <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                <div className="text-white text-center">
+        <div className='grid mt-3 mb-3'>
+          <div className='col-12 md:col-6 lg:col-3'>
+            <div className='h-full test'>
+              <div className='img-cover'></div>
+              <div className='overlay'></div>
+              <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
+                <div className='text-white text-center'>
                   Total Purchase Quantity:
                 </div>
-                <div className="text-red-900 text-center text-4xl">0</div>
+                <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
             </div>
           </div>
-          <div className="col-12 md:col-6 lg:col-3">
-            <div className="h-full test">
-              <div className="img-cover"></div>
-              <div className="overlay"></div>
-              <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                <div className="text-white text-center">
+          <div className='col-12 md:col-6 lg:col-3'>
+            <div className='h-full test'>
+              <div className='img-cover'></div>
+              <div className='overlay'></div>
+              <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
+                <div className='text-white text-center'>
                   Total Remaining Sales:
                 </div>
-                <div className="text-red-900 text-center text-4xl">0</div>
+                <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
             </div>
           </div>
-          <div className="col-12 md:col-6 lg:col-3">
-            <div className="h-full test">
-              <div className="img-cover"></div>
-              <div className="overlay"></div>
-              <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                <div className="text-white text-center">Total Sales:</div>
-                <div className="text-red-900 text-center text-4xl">0</div>
+          <div className='col-12 md:col-6 lg:col-3'>
+            <div className='h-full test'>
+              <div className='img-cover'></div>
+              <div className='overlay'></div>
+              <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
+                <div className='text-white text-center'>Total Sales:</div>
+                <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
             </div>
           </div>
         </div>
         <h5>Day Wise Market</h5>
         <hr />
-        <div className="mb-4">
-          <Chart type="bar" data={data} />
+        <div className='mb-4'>
+          <Chart type='bar' data={data} />
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default InOutData;
+export default InOutData
