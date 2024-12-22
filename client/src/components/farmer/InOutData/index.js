@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Controller, useForm, watch } from "react-hook-form";
-import { FORM_FIELDS_NAME } from "./constant";
-import { Button } from "primereact/button";
-import MzAutoComplete from "../../../common/MzForm/MzAutoComplete";
-import "./style.css";
-import { Chart } from "primereact/chart";
-import jwt_decode from "jwt-decode";
-import { Link } from "react-router-dom";
-import { Calendar } from "primereact/calendar";
-import "primereact/resources/themes/saga-green/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
-import axios from "axios";
-import { baseUrl } from "../../../services/PostAPI";
-import { API_PATH } from "../../../constant/urlConstant";
-import moment from "moment";
+import React, { useState, useEffect } from 'react'
+import { Controller, useForm, watch } from 'react-hook-form'
+import { FORM_FIELDS_NAME } from './constant'
+import { Button } from 'primereact/button'
+import MzAutoComplete from '../../../common/MzForm/MzAutoComplete'
+import './style.css'
+import { Chart } from 'primereact/chart'
+import { jwt_decode } from 'jwt-decode'
+import { Link } from 'react-router-dom'
+import { Calendar } from 'primereact/calendar'
+import 'primereact/resources/themes/saga-green/theme.css'
+import 'primereact/resources/primereact.min.css'
+import 'primeicons/primeicons.css'
+import axios from 'axios'
+import { baseUrl } from '../../../services/PostAPI'
+import { API_PATH } from '../../../constant/urlConstant'
+import moment from 'moment'
 
 const InOutData = props => {
   const { outwardList, inwardList, handleFetchInwardRecord, isloading } =
