@@ -1,6 +1,6 @@
 // import Moment from "moment";
 
-export const baseUrl = "http://localhost:4000";
+export const baseUrl = "http://54.255.101.11:4000";
 
 export function loadingShow(hidden) {
   let loading = document.getElementById("loading");
