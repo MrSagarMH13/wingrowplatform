@@ -5,7 +5,7 @@ import { Button } from 'primereact/button'
 import MzAutoComplete from '../../../common/MzForm/MzAutoComplete'
 import './style.css'
 import { Chart } from 'primereact/chart'
-import jwt_decode from 'jwt-decode'
+// import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import { Calendar } from 'primereact/calendar'
 import 'primereact/resources/themes/saga-green/theme.css'
@@ -139,7 +139,8 @@ const InOutData = props => {
   // };
   const onSubmit = async data => {
     const token = localStorage.getItem('token')
-    const userId = token ? jwt_decode(token)?.id : null
+    // const userId = token ? jwt_decode(token)?.id : null
+    const userId = JSON.parse(localStorage.getItem("user"))?.id ?? null;
 
     if (!userId || !data.market || !data.date) {
       console.error('Missing required fields: userId, market, or date')
