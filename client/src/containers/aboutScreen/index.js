@@ -1,12 +1,10 @@
-import React from "react";
+import React from 'react'
 
 const AboutUsScreen = () => {
   return (
     <>
-      <div>
-     About Us
-      </div>
+      <div>About Us</div>
     </>
-  );
-};
-export default AboutUsScreen;
+  )
+}
+export default AboutUsScreen

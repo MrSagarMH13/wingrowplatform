@@ -11,12 +11,12 @@ import {
   CREATE_OUTWARD_RECORD,
   DELETE_OUTWARD,
   UPDATE_OUTWARD_RECORD,
-} from "../../../constant/actionTypes/in-out-ward";
+} from '../../../constant/actionTypes/in-out-ward'
 
 const formFieldValueMap = {
-  inward: "",
-  name: "",
-};
+  inward: '',
+  name: '',
+}
 
 const initialState = {
   inwardList: [],
@@ -40,7 +40,7 @@ const initialState = {
   isOutwardDetailError: false,
   isCreateOutwardError: false,
   isEditOutwardError: false,
-};
+}
 
 const in_out_wardReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -71,7 +71,7 @@ const in_out_wardReducer = (state = initialState, action) => {
         isOutwardDetailError: false,
         isCreateOutwardError: false,
         isEditOutwardError: false,
-      };
+      }
     case FETCH_INWARD_LIST.START:
     case FETCH_INWARD_RECORD.START:
     case CREATE_INWARD_RECORD.START:
@@ -97,33 +97,34 @@ const in_out_wardReducer = (state = initialState, action) => {
         isOutwardDetailError: false,
         isCreateOutwardError: false,
         isEditOutwardError: false,
-      };
+      }
     case FETCH_INWARD_LIST.SUCCESS:
       return {
         ...state,
         inwardList: action.payload,
         isLoading: false,
         error: null,
-      };
+      }
     case FETCH_INWARD_RECORD.SUCCESS:
-      let otherLinks = action.payload.otherLinks ?? "";
-      let linkobj = {};
+      let otherLinks = action.payload.otherLinks ?? ''
+      let linkobj = {}
 
       if (otherLinks) {
         try {
-          linkobj = JSON.parse(otherLinks);
+          // eslint-disable-next-line
+          linkobj = JSON.parse(otherLinks)
         } catch (error) {
-          console.log("Error parsing otherLinks:", error);
+         
         }
       }
-      
+
       return {
         ...state,
 
         isLoading: false,
         error: null,
         isInwardDetailSuccess: true,
-      };
+      }
     case CREATE_INWARD_RECORD.SUCCESS:
       return {
         ...state,
@@ -131,52 +132,52 @@ const in_out_wardReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isCreateInwardSuccess: true,
-      };
+      }
     case UPDATE_INWARD_RECORD.SUCCESS:
       return {
         ...state,
-        inwardList: state.inwardList.map((inward) =>
+        inwardList: state.inwardList.map(inward =>
           inward.id === action.payload.id ? action.payload : inward
         ),
         isLoading: false,
         error: null,
         isEditInwardSuccess: true,
-      };
+      }
     case DELETE_INWARD.SUCCESS:
       return {
         ...state,
         inwardList: state.inwardList.filter(
-          (inward) => inward.id !== action.payload.inwardId
+          inward => inward.id !== action.payload.inwardId
         ),
         isLoading: false,
         error: null,
         isDeleteInwardSuccess: true,
-      };
+      }
     case FETCH_INWARD_LIST.ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload.error,
-      };
+      }
     case FETCH_INWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload.error,
         isInwardDetailError: true,
-      };
+      }
     case CREATE_INWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isCreateInwardError: true,
-      };
+      }
     case UPDATE_INWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isEditInwardError: true,
-      };
+      }
 
     case DELETE_INWARD.ERROR:
       return {
@@ -184,7 +185,7 @@ const in_out_wardReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload.error,
         isDeleteInwardError: true,
-      };
+      }
 
     case FETCH_OUTWARD_LIST.SUCCESS:
       return {
@@ -192,14 +193,14 @@ const in_out_wardReducer = (state = initialState, action) => {
         outwardList: action.payload,
         isLoading: false,
         error: null,
-      };
+      }
     case FETCH_OUTWARD_RECORD.SUCCESS:
       return {
         ...state,
         isLoading: false,
         error: null,
         isOutwardDetailSuccess: true,
-      };
+      }
     case CREATE_OUTWARD_RECORD.SUCCESS:
       return {
         ...state,
@@ -207,52 +208,52 @@ const in_out_wardReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isCreateOutwardSuccess: true,
-      };
+      }
     case UPDATE_OUTWARD_RECORD.SUCCESS:
       return {
         ...state,
-        outwardList: state.outwardList.map((outward) =>
+        outwardList: state.outwardList.map(outward =>
           outward.id === action.payload.id ? action.payload : outward
         ),
         isLoading: false,
         error: null,
         isEditOutwardSuccess: true,
-      };
+      }
     case DELETE_OUTWARD.SUCCESS:
       return {
         ...state,
         outwardList: state.outwardList.filter(
-          (outward) => outward.id !== action.payload.outwardId
+          outward => outward.id !== action.payload.outwardId
         ),
         isLoading: false,
         error: null,
         isDeleteOutwardSuccess: true,
-      };
+      }
     case FETCH_OUTWARD_LIST.ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload.error,
-      };
+      }
     case FETCH_OUTWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload.error,
         isOutwardDetailError: true,
-      };
+      }
     case CREATE_OUTWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isCreateOutwardError: true,
-      };
+      }
     case UPDATE_OUTWARD_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isEditOutwardError: true,
-      };
+      }
 
     case DELETE_OUTWARD.ERROR:
       return {
@@ -260,10 +261,10 @@ const in_out_wardReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.payload.error,
         isDeleteOutwardError: true,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default in_out_wardReducer;
+export default in_out_wardReducer

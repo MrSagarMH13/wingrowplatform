@@ -1,6 +1,6 @@
 import axios from "axios";
-import { APIError, handleAPIError } from "../common/errorHandler";
-import { baseUrl, postApiAsyn, postApiAsynWithoutToken } from "../PostAPI";
+import {  handleAPIError } from "../common/errorHandler";
+import { baseUrl } from "../PostAPI";
 import { MSG91_BASE_URL } from "../../constant/msg91";
 
 export const sendVerificationCode = async (payload) => {
@@ -30,7 +30,7 @@ export const reSendVerificationCode = async (payload) => {
   };
   try {
     const result = await axios.request(options);
-    if (result.status == 200 && result?.data?.type==="success") {
+    if (result.status === 200 && result?.data?.type==="success") {
       return result?.data;
     }
     else{

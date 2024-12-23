@@ -7,14 +7,13 @@ import {
   UPDATE_STALL_RECORD,
   FETCH_BOOKED_STALL_LIST,
   FETCH_BOOKED_STALL_LIST_BY_USER,
-  SELECT_STALL
-} from "../../../constant/actionTypes/stall";
-
+  SELECT_STALL,
+} from '../../../constant/actionTypes/stall'
 
 const formFieldValueMap = {
-  stall: "",
-  name: "",
-};
+  stall: '',
+  name: '',
+}
 
 const initialState = {
   stallList: [],
@@ -32,7 +31,7 @@ const initialState = {
   isCreateStallError: false,
   isEditStallError: false,
   isPageLevelError: false,
-};
+}
 
 const stallReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,7 +44,7 @@ const stallReducer = (state = initialState, action) => {
         selectedStalls: [],
         isLoading: false,
         error: null,
-      };
+      }
     case FETCH_STALL_LIST.START:
     case FETCH_STALL_RECORD.START:
     case CREATE_STALL_RECORD.START:
@@ -58,7 +57,7 @@ const stallReducer = (state = initialState, action) => {
         isLoading: true,
         stallList: [],
         stallBookList: [],
-        selectedStalls:[],
+        selectedStalls: [],
         error: null,
         isCreateStallSuccess: false,
         isEditStallSuccess: false,
@@ -68,14 +67,14 @@ const stallReducer = (state = initialState, action) => {
         isStallDetailError: false,
         isCreateStallError: false,
         isEditStallError: false,
-      };
+      }
     case FETCH_STALL_LIST.SUCCESS:
       return {
         ...state,
         stallList: action.payload,
         isLoading: false,
         error: null,
-      };
+      }
     case FETCH_BOOKED_STALL_LIST.SUCCESS:
       return {
         ...state,
@@ -83,7 +82,7 @@ const stallReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isStallDetailSuccess: true,
-      };
+      }
 
     case FETCH_BOOKED_STALL_LIST_BY_USER.SUCCESS:
       return {
@@ -92,7 +91,7 @@ const stallReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isStallDetailSuccess: true,
-      };
+      }
 
     case FETCH_STALL_RECORD.SUCCESS:
       return {
@@ -101,7 +100,7 @@ const stallReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isStallDetailSuccess: true,
-      };
+      }
     case CREATE_STALL_RECORD.SUCCESS:
       return {
         ...state,
@@ -109,33 +108,33 @@ const stallReducer = (state = initialState, action) => {
         isLoading: false,
         error: null,
         isCreateStallSuccess: true,
-      };
+      }
     case UPDATE_STALL_RECORD.SUCCESS:
       return {
         ...state,
-        stallList: state.stallList.map((stall) =>
+        stallList: state.stallList.map(stall =>
           stall.id === action.payload.id ? action.payload : stall
         ),
         isLoading: false,
         error: null,
         isEditStallSuccess: true,
-      };
+      }
     case DELETE_STALL.SUCCESS:
       return {
         ...state,
         stallBookList: state.stallBookList.filter(
-          (stall) => stall.id !== action.payload.stallId
+          stall => stall.id !== action.payload.stallId
         ),
         isLoading: false,
         error: null,
         isDeleteStallSuccess: true,
-      };
+      }
 
     case SELECT_STALL:
       return {
         ...state,
-        selectedStalls: action.payload, 
-      };
+        selectedStalls: action.payload,
+      }
     case FETCH_STALL_LIST.ERROR:
     case FETCH_BOOKED_STALL_LIST.ERROR:
     case FETCH_BOOKED_STALL_LIST_BY_USER.ERROR:
@@ -143,42 +142,42 @@ const stallReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload.error,
-      };
+      }
     case FETCH_STALL_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload.error,
         isStallDetailError: true,
-      };
+      }
     case CREATE_STALL_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isCreateStallError: true,
-      };
+      }
     case UPDATE_STALL_RECORD.ERROR:
       return {
         ...state,
         isLoading: false,
         isEditStallError: true,
-      };
+      }
 
     case DELETE_STALL.ERROR:
       return {
         ...state,
-       isLoading: false,
+        isLoading: false,
         error: action.payload.error,
         isDeleteStallError: true,
-      };
-      case "UPDATE_SELECTED_STALLS":
-        return {
-          ...state,
-          selectedStalls: action.payload,
-        };
+      }
+    case 'UPDATE_SELECTED_STALLS':
+      return {
+        ...state,
+        selectedStalls: action.payload,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default stallReducer;
+export default stallReducer

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Controller, useForm, watch } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { FORM_FIELDS_NAME } from './constant'
 import { Button } from 'primereact/button'
 import MzAutoComplete from '../../../common/MzForm/MzAutoComplete'
 import './style.css'
 import { Chart } from 'primereact/chart'
-// import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import { Calendar } from 'primereact/calendar'
 import 'primereact/resources/themes/saga-green/theme.css'
@@ -17,8 +16,7 @@ import { API_PATH } from '../../../constant/urlConstant'
 import moment from 'moment'
 
 const InOutData = props => {
-  const { outwardList, inwardList, handleFetchInwardRecord, isloading } =
-    props.InOutwardProps
+  const { outwardList, inwardList, isloading } = props.InOutwardProps
 
   const {
     control,
@@ -42,13 +40,13 @@ const InOutData = props => {
       'Friday',
       'Saturday',
       'Sunday',
-    ], // Days of the week
+    ],
     datasets: [
       {
         label: 'Market Sales',
-        data: [500, 700, 800, 600, 900, 1200, 950], // Market sales for each day
+        data: [500, 700, 800, 600, 900, 1200, 950],
         backgroundColor: '#66BB6A',
-        borderColor: '#66BB6A', // Border color
+        borderColor: '#66BB6A',
         borderWidth: 1,
       },
     ],
@@ -56,9 +54,8 @@ const InOutData = props => {
   useEffect(() => {
     const fetchMarketData = async () => {
       try {
-        // const response = await axios.get(`${baseUrl}/api/markets`);
         const response = await axios.get(
-          `${baseUrl}${API_PATH.MARKET.FETCH_LIST}`,
+          `${baseUrl}${API_PATH.MARKET.FETCH_LIST}`
         )
         setMarkets(response?.data?.markets)
       } catch (error) {
@@ -92,55 +89,15 @@ const InOutData = props => {
   useEffect(() => {
     const selectedMarketName = watch(FORM_FIELDS_NAME.MARKET.name)
     const getMarketDay = marketData.find(
-      item => item.name === selectedMarketName ?? '',
+      item => item.name === selectedMarketName ?? ''
     )?.marketDay
-    // const disabled = getDisabledDays(getMarketDay);
     setMarketDay(getMarketDay)
+    // eslint-disable-next-line
   }, [watch(FORM_FIELDS_NAME.MARKET.name)])
 
-  // const onSubmit =async (data) => {
-  //   const token = localStorage.getItem("token");
-  //   const userId = token ? jwt_decode(token)?.id : null;
-
-  //   const params = {
-  //     userId:userId,
-  //     name: data.market,
-  //     date: data?.date ? moment(data.date).format("YYYY/MM/DD") : null,
-  //   };
-  //   console.log("params",params);
-  //   try {
-  //     // const response = await axios.get(`${baseUrl}/inwardoutward?userId:${userId}&`
-  //     const queryString = `userId=${userId}&name=${data.market}&date=${params.date}`;
-  //     console.log("queryString",queryString);
-  //     const response =  await axios.get(`${baseUrl}/inwardoutward?${queryString}`, {  headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },params });
-  //     console.log("response",response);
-  //     setinoutData(response);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-
-  //   }
-  //   // handleFetchInwardRecord();
-  //   // const selectedMarket = data.market;
-  //   // const getMarketDay = marketData.find(
-  //   //   (item) => item.location === selectedMarket
-  //   // )?.marketDay;
-
-  //   // // Set the marketDay state directly
-  //   // const disabled = getDisabledDays(getMarketDay);
-  //   // setMarketDay(disabled);
-
-  //   // const dateValue = moment(data.date).format("DD/MM/YYYY");
-
-  //   // // Store the selected market and date values to filter data later
-  //   // setFilteredOutwardList({ selectedMarket, dateValue });
-  //   // setFilteredInwardList({ selectedMarket, dateValue });
-  // };
   const onSubmit = async data => {
     const token = localStorage.getItem('token')
-    // const userId = token ? jwt_decode(token)?.id : null
-    const userId = JSON.parse(localStorage.getItem("user"))?.id ?? null;
+    const userId = JSON.parse(localStorage.getItem('user'))?.id ?? null
 
     if (!userId || !data.market || !data.date) {
       console.error('Missing required fields: userId, market, or date')
@@ -166,16 +123,16 @@ const InOutData = props => {
     }
   }
 
-  // Effect that runs when filteredOutwardList or filteredInwardList are set
   useEffect(() => {
     if (filteredOutwardList?.selectedMarket && filteredOutwardList?.dateValue) {
       const filtered = outwardList?.filter(
         item =>
           item.market === filteredOutwardList.selectedMarket &&
-          item.time === filteredOutwardList.dateValue,
+          item.time === filteredOutwardList.dateValue
       )
       setFilteredOutwardList(filtered)
     }
+    // eslint-disable-next-line
   }, [filteredOutwardList])
 
   useEffect(() => {
@@ -183,10 +140,11 @@ const InOutData = props => {
       const filteredInward = inwardList.filter(
         item =>
           item.market === filteredInwardList.selectedMarket &&
-          item.time === filteredInwardList.dateValue,
+          item.time === filteredInwardList.dateValue
       )
       setFilteredInwardList(filteredInward)
     }
+    // eslint-disable-next-line
   }, [filteredInwardList])
   const getFormErrorMessage = name => {
     return (
@@ -241,11 +199,8 @@ const InOutData = props => {
                       {...field}
                       id='date'
                       name={FORM_FIELDS_NAME.B_DATE.name}
-                      // value={dates[selectedMarket]}
-                      // onChange={e => handleDateChange(e, field)}
                       placeholder={FORM_FIELDS_NAME.B_DATE.placeholder}
                       disabledDays={getDisabledDays(marketDay)}
-                      // minDate={new Date()}
                       maxDate={new Date()}
                       showIcon={true}
                       showButtonBar={false}
@@ -253,7 +208,7 @@ const InOutData = props => {
                       dateFormat='dd/mm/yy'
                       isError={!!errors[FORM_FIELDS_NAME.B_DATE.name]}
                       errorMsg={getFormErrorMessage(
-                        FORM_FIELDS_NAME.B_DATE.name,
+                        FORM_FIELDS_NAME.B_DATE.name
                       )}
                     />
                   )}
@@ -264,7 +219,6 @@ const InOutData = props => {
               <Button
                 type='submit'
                 label='Search'
-                // onClick={handleFetchInwardRecord}
                 className='border-2 border-round-md md:w-6rem mr-2'
                 disabled={isloading}
               />
@@ -332,40 +286,6 @@ const InOutData = props => {
             </div>
           )}
         </div>
-
-        {/* <h5>Market Details</h5>
-        <hr />
-        <div className="grid mt-3 mb-3">
-          <div className="col-12 md:col-6 lg:col-3">
-            <div className="h-full test">
-              <div className="img-cover"></div>
-              <div className="overlay"></div>
-              <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                <div className="text-white">Monday: None</div>
-                <div className="text-red-900">
-                  Tuesday: Karve Nagar, Kondhwa BK
-                </div>
-                <div className="text-white">Wednesday: Hadapsar, Undri</div>
-                <div className="text-red-900">Thursday: Kharadi IT Park</div>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 md:col-6 lg:col-3">
-            <div className="h-full test">
-              <div className="img-cover"></div>
-              <div className="overlay"></div>
-              <div className="content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8">
-                <div className="text-white">
-                  Friday: Bramhasum City, Wagholi
-                </div>
-                <div className="text-red-900">Saturday: Bhavani Road</div>
-                <div className="text-white">
-                  Sunday: Magarpatta, Amanora City, Green City
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <h5>Cummulative Sales Data</h5>
         <hr />
         <div className='grid mt-3 mb-3'>

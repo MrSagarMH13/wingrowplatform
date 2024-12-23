@@ -19,15 +19,14 @@ const Header = ({ role, verified }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false)
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userName = user?.firstname +" "+ user?.lastname??""
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userName = (user?.firstname + ' ' + user?.lastname) ?? '-';
   const handleNavigation = route => {
     navigate(route)
     setVisible(false)
   }
 
   const handleLogout = () => {
-    // localStorage.clear()
     dispatch(logout())
     dispatch(init_verification())
     navigate(ROUTE_PATH.BASE.HOME)
@@ -81,9 +80,7 @@ const Header = ({ role, verified }) => {
       label: t('customers'),
       icon: 'pi pi-fw pi-users',
       route: ROUTE_PATH.CUSTOMER.HOME,
-      // visible: !verified,
     },
-    // { separator: true },
     {
       label: t('Settings'),
       icon: 'pi pi-fw pi-cog',
@@ -212,7 +209,7 @@ const Header = ({ role, verified }) => {
           <div className='flex align-items-center justify-content-between p-1 block md:hidden'>
             <img src={LOGO} alt='winagrow_logo.png' />
             <NavLink className='p-ripple no-underline'>
-              <span className='font-bold'>Wingrow Market</span>
+              <span className='font-bold text-black'>Wingrow Market</span>
             </NavLink>
           </div>
         }
@@ -235,7 +232,7 @@ const Header = ({ role, verified }) => {
                       style={{ fontSize: '1.5rem', marginRight: '1rem' }}></i>
                     <span className='ml-1'>{item.label}</span>
                   </div>
-                ),
+                )
             )}
           </div>
 
@@ -250,17 +247,21 @@ const Header = ({ role, verified }) => {
                 className='rounded bg-transparent w-full'
               />
             </div>
-            <hr className='mb-3' />
-            <div className='sidebar-item mt-3'>
-              <NavLink className='flex align-items-center no-underline'>
-                <Avatar
-                  icon='pi pi-user'
-                  style={{ backgroundColor: '#28a745', color: '#ffffff' }}
-                  shape='circle'
-                />
-                <span className='font-bold'>{userName}</span>
-              </NavLink>
-            </div>
+            {verified && (
+              <>
+                <hr className='mb-3' />
+                <div className='sidebar-item mt-3'>
+                  <NavLink className='flex align-items-center no-underline'>
+                    <Avatar
+                      icon='pi pi-user'
+                      style={{ backgroundColor: '#28a745', color: '#ffffff' }}
+                      shape='circle'
+                    />
+                    <span className='font-bold text-black'>&nbsp;&nbsp;{userName}</span>
+                  </NavLink>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </Sidebar>

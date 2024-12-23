@@ -57,14 +57,14 @@ const Routing = () => {
               element={<OutwardScreen />}
             />
             <Route path={ROUTE_PATH.BOOKING.STALL} element={<StallScreen />} />
-      
+
             <Route
               path={ROUTE_PATH.FARMER.DATA}
               element={<InOutDataScreen />}
             />
-              <Route
+            <Route
               path={ROUTE_PATH.FARMER.SUBCRIPTION}
-              element={<SubMarketScreen/>}
+              element={<SubMarketScreen />}
             />
             <Route
               path='*'
