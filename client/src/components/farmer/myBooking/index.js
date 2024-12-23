@@ -80,9 +80,9 @@ const MyBookingComponent = props => {
                       className='shadow-2 p-3 h-full flex flex-column'
                       style={{ borderRadius: '6px' }}>
                       <div className='text-900 font-medium text-xl mb-2'>
-                        {stall.location}
+                        {stall.name}
                       </div>
-                      <div className='text-600'>{stall?.name}</div>
+                      <div className='text-600'>{stall?.stallName}</div>
                       <hr className='my-3 mx-0 border-top-1 border-bottom-none border-300' />
                       <div className='flex px-2 align-items-center justify-content-between'>
                         <span className='font-medium text-red-700'>
