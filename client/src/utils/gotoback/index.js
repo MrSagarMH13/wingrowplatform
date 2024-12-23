@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export const navigateBack = () => {
-  const navigate = useNavigate();
-  navigate(-1); 
-};
+  const navigate = useNavigate()
+  navigate(-1)
+}

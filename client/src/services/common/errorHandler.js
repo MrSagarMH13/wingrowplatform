@@ -1,10 +1,12 @@
-export const handleAPIError = (error) => {
+export const handleAPIError = error => {
   return {
     isError: true,
     error,
-  };
-};
+  }
+}
 
-export function APIError(error) {
-  this.error = error;
+export class APIError {
+  constructor(error) {
+    this.error = error
+  }
 }

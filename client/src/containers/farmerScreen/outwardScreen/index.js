@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import AddOutwardComponent from "../../../components/farmer/outward";
-import { MzToast, TOAST_SEVERITY } from "../../../common/MzToast";
-import { ProgressBar } from "primereact/progressbar";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import AddOutwardComponent from '../../../components/farmer/outward'
+import { MzToast, TOAST_SEVERITY } from '../../../common/MzToast'
+import { ProgressBar } from 'primereact/progressbar'
 import {
   createOutwardRecord,
   fetchOutwardRecord,
   initOutward,
-} from "../../../redux/action/in-out-ward";
-import { commodity } from "../commodity";
-import { marketData } from "../market";
+} from '../../../redux/action/in-out-ward'
+import { commodity } from '../commodity'
+import { marketData } from '../market'
 
-const OutwardScreen = (props) => {
+const OutwardScreen = props => {
   const {
     isCreateOutwardSuccess,
     isCreateOutwardError,
@@ -26,48 +26,48 @@ const OutwardScreen = (props) => {
     formFieldValueMap,
     isPageLevelError,
     fetchOutwardRecord,
-    initOutward
-  } = props;
+    initOutward,
+  } = props
 
-  useEffect(()=>{
+  useEffect(() => {
     initOutward()
-    // eslint-disable-next-line 
-  },[])
+    // eslint-disable-next-line
+  }, [])
 
   const getToastProps = () => {
     if (isCreateOutwardSuccess || isEditOutwardSuccess) {
       const toastTitle = isEdit
-        ? "Outward Updated Successfully"
-        : "Outward Add Successfully";
+        ? 'Outward Updated Successfully'
+        : 'Outward Add Successfully'
       return {
         severity: TOAST_SEVERITY.SUCCESS,
         toastTitle,
         shouldShowToast: true,
-      };
+      }
     }
 
     if (isCreateOutwardError || isOutwardDetailError || isEditOutwardError) {
-      let toastTitle = error ? error : "Error while Creating Outward";
+      let toastTitle = error ? error : 'Error while Creating Outward'
       if (isEditOutwardError) {
-        toastTitle = error ? error : "Error while updating Outward";
+        toastTitle = error ? error : 'Error while updating Outward'
       } else if (isOutwardDetailError) {
         toastTitle =
-          "Error while performing operation. Please refresh your browser";
+          'Error while performing operation. Please refresh your browser'
       }
 
       return {
         severity: TOAST_SEVERITY.ERROR,
         toastTitle,
         shouldShowToast: true,
-      };
+      }
     }
-  };
-  const handleFetchOutwardRecord = (payload) => {
-    fetchOutwardRecord(payload);
-  };
+  }
+  const handleFetchOutwardRecord = payload => {
+    fetchOutwardRecord(payload)
+  }
   const renderProgressBar = () => {
-    return <ProgressBar mode="indeterminate" style={{ height: "6px" }} />;
-  };
+    return <ProgressBar mode='indeterminate' style={{ height: '6px' }} />
+  }
 
   const addOutwardProps = {
     createOutwardRecord,
@@ -82,23 +82,23 @@ const OutwardScreen = (props) => {
     marketData,
     initOutward,
     handleFetchOutwardRecord,
-  };
+  }
   return (
     <>
       {isLoading && renderProgressBar()}
       <MzToast {...getToastProps()} />
       <AddOutwardComponent addOutwardProps={addOutwardProps} />
     </>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    createOutwardRecord: (payload) => dispatch(createOutwardRecord(payload)),
-    initOutward:()=> dispatch(initOutward()),
-    fetchOutwardRecord: (payload) => dispatch(fetchOutwardRecord(payload)),
-  };
-};
+    createOutwardRecord: payload => dispatch(createOutwardRecord(payload)),
+    initOutward: () => dispatch(initOutward()),
+    fetchOutwardRecord: payload => dispatch(fetchOutwardRecord(payload)),
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -112,11 +112,11 @@ const mapStateToProps = (state, ownProps) => {
     isEditOutwardSuccess: state.inOutWardReducer.isEditOutwardSuccess,
     isEditOutwardError: state.inOutWardReducer.isEditOutwardError,
     isOutwardDetailError: state.inOutWardReducer.isOutwardDetailError,
-  };
-};
+  }
+}
 
-const selectFormFieldValueMap = (inOutWardReducer) => {
-  return inOutWardReducer.formFieldValueMap;
-};
+const selectFormFieldValueMap = inOutWardReducer => {
+  return inOutWardReducer.formFieldValueMap
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutwardScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(OutwardScreen)

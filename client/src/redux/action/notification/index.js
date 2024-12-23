@@ -1,14 +1,12 @@
+export const SUCCESS = 'SUCCESS'
+export const FAILED = 'FAILED'
 
-
-export const SUCCESS = 'SUCCESS';
-export const FAILED = 'FAILED';
-
-export const Success = (payload) => ({
+export const Success = payload => ({
   type: SUCCESS,
-  payload
-});
+  payload,
+})
 
-export const Failed = (payload) => ({
+export const Failed = payload => ({
   type: FAILED,
-  payload
-});
+  payload,
+})

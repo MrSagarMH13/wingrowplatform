@@ -1,29 +1,30 @@
-import React from "react";
-import { connect } from "react-redux";
-import { ProgressBar } from "primereact/progressbar";
-import { marketData } from "../market";
-import { fetchInwardList, fetchOutwardList } from "../../../redux/action/in-out-ward";
-import InOutData from "../../../components/farmer/InOutData";
+import React from 'react'
+import { connect } from 'react-redux'
+import { ProgressBar } from 'primereact/progressbar'
+import { marketData } from '../market'
+import {
+  fetchInwardList,
+  fetchOutwardList,
+} from '../../../redux/action/in-out-ward'
+import InOutData from '../../../components/farmer/InOutData'
 
-const InwardOutwardScreen = (props) => {
+const InwardOutwardScreen = props => {
   const {
-    error,
     isLoading,
     isPageLevelError,
     fetchInwardList,
     fetchOutwardList,
     outwardList,
-    inwardList
-  } = props;
-
+    inwardList,
+  } = props
 
   const handleFetchInwardRecord = () => {
-    fetchInwardList();
-    fetchOutwardList();
-  };
+    fetchInwardList()
+    fetchOutwardList()
+  }
   const renderProgressBar = () => {
-    return <ProgressBar mode="indeterminate" style={{ height: "6px" }} />;
-  };
+    return <ProgressBar mode='indeterminate' style={{ height: '6px' }} />
+  }
 
   const InOutwardProps = {
     isPageLevelError,
@@ -31,22 +32,22 @@ const InwardOutwardScreen = (props) => {
     marketData,
     outwardList,
     handleFetchInwardRecord,
-    inwardList
-  };
+    inwardList,
+  }
   return (
     <>
       {isLoading && renderProgressBar()}
       <InOutData InOutwardProps={InOutwardProps} />
     </>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchOutwardList:()=>dispatch(fetchOutwardList()),
-    fetchInwardList:()=>dispatch(fetchInwardList())
-  };
-};
+    fetchOutwardList: () => dispatch(fetchOutwardList()),
+    fetchInwardList: () => dispatch(fetchInwardList()),
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -55,9 +56,8 @@ const mapStateToProps = (state, ownProps) => {
     isLoading: state.inOutWardReducer.isLoading,
     error: state.inOutWardReducer.error,
     outwardList: state.inOutWardReducer.outwardList,
-    inwardList:state.inOutWardReducer.inwardList
-  };
-};
+    inwardList: state.inOutWardReducer.inwardList,
+  }
+}
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(InwardOutwardScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(InwardOutwardScreen)

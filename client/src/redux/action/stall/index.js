@@ -7,222 +7,218 @@ import {
   UPDATE_STALL_RECORD,
   FETCH_BOOKED_STALL_LIST,
   FETCH_BOOKED_STALL_LIST_BY_USER,
-  SELECT_STALL
-} from "../../../constant/actionTypes/stall";
-import { stallService } from "../../../services";
+  SELECT_STALL,
+} from '../../../constant/actionTypes/stall'
+import { stallService } from '../../../services'
 
 export const initStall = () => ({
   type: INIT_STALL,
-});
+})
 
-export const fetchStallListStart = (payload) => ({
+export const fetchStallListStart = payload => ({
   type: FETCH_STALL_LIST.START,
   payload,
-});
+})
 
-export const fetchStallListSuccess = (stalls) => ({
+export const fetchStallListSuccess = stalls => ({
   type: FETCH_STALL_LIST.SUCCESS,
   payload: stalls,
-});
+})
 
-export const fetchStallListError = (error) => ({
+export const fetchStallListError = error => ({
   type: FETCH_STALL_LIST.ERROR,
   payload: { error },
-});
+})
 
-export const fetchStallList = (payload) => {
- 
-  return (dispatch) => {
-    dispatch(fetchStallListStart(payload));
-    stallService.fetchStallList(payload).then((stallData) => {
+export const fetchStallList = payload => {
+  return dispatch => {
+    dispatch(fetchStallListStart(payload))
+    stallService.fetchStallList(payload).then(stallData => {
       if (!stallData.isError) {
-        dispatch(fetchStallListSuccess(stallData));
+        dispatch(fetchStallListSuccess(stallData))
       } else {
-        dispatch(fetchStallListError(stallData));
+        dispatch(fetchStallListError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
-export const fetchStallListBookStart = (payload) => {
+export const fetchStallListBookStart = payload => {
   return {
     type: FETCH_BOOKED_STALL_LIST.START,
     payload,
-  };
-};
-export const fetchStallListBookSuccess = (payload) => {
+  }
+}
+export const fetchStallListBookSuccess = payload => {
   return {
     type: FETCH_BOOKED_STALL_LIST.SUCCESS,
     payload,
-  };
-};
+  }
+}
 
-export const fetchStallListBookError = (error) => {
+export const fetchStallListBookError = error => {
   return {
     type: FETCH_BOOKED_STALL_LIST.ERROR,
     payload: { error },
-  };
-};
-export const fetchStallBookList = (payload) => {
-  
-  return (dispatch) => {
-    dispatch(fetchStallListBookStart(payload));
-    stallService.fetchStallBookList(payload).then((stallData) => {
+  }
+}
+export const fetchStallBookList = payload => {
+  return dispatch => {
+    dispatch(fetchStallListBookStart(payload))
+    stallService.fetchStallBookList(payload).then(stallData => {
       if (!stallData.isError) {
-        dispatch(fetchStallListBookSuccess(stallData));
+        dispatch(fetchStallListBookSuccess(stallData))
       } else {
-        dispatch(fetchStallListBookError(stallData));
+        dispatch(fetchStallListBookError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
-export const fetchStallListBookByUserStart = (payload) => {
+export const fetchStallListBookByUserStart = payload => {
   return {
     type: FETCH_BOOKED_STALL_LIST_BY_USER.START,
     payload,
-  };
-};
+  }
+}
 
-export const fetchStallListBookByUserSuccess = (payload) => {
+export const fetchStallListBookByUserSuccess = payload => {
   return {
     type: FETCH_BOOKED_STALL_LIST_BY_USER.SUCCESS,
     payload,
-  };
-};
-export const fetchStallListBookByUserError = (error) => {
+  }
+}
+export const fetchStallListBookByUserError = error => {
   return {
     type: FETCH_BOOKED_STALL_LIST_BY_USER.ERROR,
     payload: { error },
-  };
-};
+  }
+}
 
-export const fetchStallBookByUserList = (payload) => {
- 
-  return (dispatch) => {
-    dispatch(fetchStallListBookByUserStart(payload));
-    stallService.fetchStallBookByUserList(payload).then((stallData) => {
+export const fetchStallBookByUserList = payload => {
+  return dispatch => {
+    dispatch(fetchStallListBookByUserStart(payload))
+    stallService.fetchStallBookByUserList(payload).then(stallData => {
       if (!stallData.isError) {
-        dispatch(fetchStallListBookByUserSuccess(stallData));
+        dispatch(fetchStallListBookByUserSuccess(stallData))
       } else {
-        dispatch(fetchStallListBookByUserError(stallData));
+        dispatch(fetchStallListBookByUserError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
-export const fetchStallRecordStart = (payload) => ({
+export const fetchStallRecordStart = payload => ({
   type: FETCH_STALL_RECORD.START,
   payload,
-});
+})
 
-export const fetchStallRecordSuccess = (stall) => ({
+export const fetchStallRecordSuccess = stall => ({
   type: FETCH_STALL_RECORD.SUCCESS,
   payload: stall,
-});
+})
 
-export const fetchStallRecordError = (error) => ({
+export const fetchStallRecordError = error => ({
   type: FETCH_STALL_RECORD.ERROR,
   payload: { error },
-});
+})
 
-export const fetchStallRecord = (payload) => {
-  return (dispatch) => {
-    dispatch(fetchStallRecordStart(payload));
-    stallService.fetchStallRecord(payload).then((stallData) => {
+export const fetchStallRecord = payload => {
+  return dispatch => {
+    dispatch(fetchStallRecordStart(payload))
+    stallService.fetchStallRecord(payload).then(stallData => {
       if (!stallData.isError) {
-        dispatch(fetchStallRecordSuccess(stallData));
+        dispatch(fetchStallRecordSuccess(stallData))
       } else {
-        dispatch(fetchStallRecordError(stallData));
+        dispatch(fetchStallRecordError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
 export const createStallRecordStart = () => ({
   type: CREATE_STALL_RECORD.START,
-});
+})
 
-export const createStallRecordSuccess = (newStall) => ({
+export const createStallRecordSuccess = newStall => ({
   type: CREATE_STALL_RECORD.SUCCESS,
   payload: newStall,
-});
+})
 
-export const createStallRecordError = (error) => ({
+export const createStallRecordError = error => ({
   type: CREATE_STALL_RECORD.ERROR,
   payload: { error },
-});
+})
 
-export const createStallRecord = (payload) => {
-  return (dispatch) => {
-    dispatch(createStallRecordStart(payload));
-    stallService.createStallRecord(payload).then((stallData) => {
+export const createStallRecord = payload => {
+  return dispatch => {
+    dispatch(createStallRecordStart(payload))
+    stallService.createStallRecord(payload).then(stallData => {
       if (!stallData.isError) {
-        dispatch(createStallRecordSuccess(stallData));
+        dispatch(createStallRecordSuccess(stallData))
       } else {
-        dispatch(createStallRecordError(stallData));
+        dispatch(createStallRecordError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
 export const updateStallRecordStart = (payload, id) => ({
   type: UPDATE_STALL_RECORD.START,
   payload,
   id,
-});
+})
 
-export const updateStallRecordSuccess = (newStall) => ({
+export const updateStallRecordSuccess = newStall => ({
   type: UPDATE_STALL_RECORD.SUCCESS,
   payload: newStall,
-});
+})
 
-export const updateStallRecordError = (error) => ({
+export const updateStallRecordError = error => ({
   type: UPDATE_STALL_RECORD.ERROR,
   payload: { error },
-});
+})
 
 export const updateStallRecord = (payload, id) => {
-  return (dispatch) => {
-    dispatch(updateStallRecordStart(payload, id));
-    stallService.updateStallRecord(payload, id).then((stallData) => {
+  return dispatch => {
+    dispatch(updateStallRecordStart(payload, id))
+    stallService.updateStallRecord(payload, id).then(stallData => {
       if (!stallData.isError) {
-        dispatch(updateStallRecordSuccess(stallData));
+        dispatch(updateStallRecordSuccess(stallData))
       } else {
-        dispatch(updateStallRecordError(stallData));
+        dispatch(updateStallRecordError(stallData))
       }
-    });
-  };
-};
+    })
+  }
+}
 
 export const deleteStallStart = () => ({
   type: DELETE_STALL.START,
-});
+})
 
-export const deleteStallSuccess = (stallId) => ({
+export const deleteStallSuccess = stallId => ({
   type: DELETE_STALL.SUCCESS,
   payload: { stallId },
-});
+})
 
-export const deleteStallError = (error) => ({
+export const deleteStallError = error => ({
   type: DELETE_STALL.ERROR,
   payload: { error },
-});
+})
 
-export const deleteStall = (stallId) => {
-  return (dispatch) => {
-    dispatch(deleteStallStart());
-    stallService.deleteStall(stallId).then((stallData) => {
+export const deleteStall = stallId => {
+  return dispatch => {
+    dispatch(deleteStallStart())
+    stallService.deleteStall(stallId).then(stallData => {
       if (!stallData.isError) {
-        dispatch(deleteStallSuccess(stallId)); 
+        dispatch(deleteStallSuccess(stallId))
       } else {
-        dispatch(deleteStallError(stallData));
+        dispatch(deleteStallError(stallData))
       }
-    });
-  };
-};
-export const selectedStall = (stallDetails) => ({
+    })
+  }
+}
+export const selectedStall = stallDetails => ({
   type: SELECT_STALL,
   payload: stallDetails,
-});
-
+})

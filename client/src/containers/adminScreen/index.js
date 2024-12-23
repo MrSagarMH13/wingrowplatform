@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import AdminComponent from '../../components/admin'
-import { fetchCancelledStallsList, fetchCustomerList, fetchFarmerList, initialCancelledStalls, initialCustomer, initialFarmer } from '../../redux/action/admin'
+import {
+  fetchCancelledStallsList,
+  fetchCustomerList,
+  fetchFarmerList,
+  initialCancelledStalls,
+  initialCustomer,
+  initialFarmer,
+} from '../../redux/action/admin'
 import { connect } from 'react-redux'
 import farmerTableData from './data.json'
 import customerTableData from './data.json'
 import { ROUTE_PATH } from '../../constant/urlConstant'
 import { useNavigate } from 'react-router-dom'
 
-
-const AdminScreen = (props) => {
+const AdminScreen = props => {
   const {
     fetchFarmerList,
     fetchCustomerList,
@@ -23,26 +29,25 @@ const AdminScreen = (props) => {
     isLoading,
     isPageLevelError,
     error,
-  } = props;
-  const history = useNavigate();
-
+  } = props
+  const history = useNavigate()
 
   useEffect(() => {
-    initFarmer();
-    initCustomer();
-    initCancelledStalls();
-    fetchFarmerList();
-    fetchCustomerList();
-    fetchCancelledStallsList();
+    initFarmer()
+    initCustomer()
+    initCancelledStalls()
+    fetchFarmerList()
+    fetchCustomerList()
+    fetchCancelledStallsList()
     // eslint-disable-next-line
-  }, []);
+  }, [])
   const handleOnFetchFarmersRecord = () => {
-    history(ROUTE_PATH.FARMERS_LIST.HOME);
-  };
+    history(ROUTE_PATH.FARMERS_LIST.HOME)
+  }
 
   const handleOnFetchCustomerRecord = () => {
-    history(ROUTE_PATH.CUSTOMER_LIST.HOME);
-  };
+    history(ROUTE_PATH.CUSTOMER_LIST.HOME)
+  }
 
   const farmerProps = {
     farmerList,
@@ -57,8 +62,8 @@ const AdminScreen = (props) => {
     customerTableData,
     error,
     handleOnFetchFarmersRecord,
-    handleOnFetchCustomerRecord
-  };
+    handleOnFetchCustomerRecord,
+  }
 
   return (
     <>
@@ -72,16 +77,17 @@ const AdminScreen = (props) => {
     </>
   )
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     initFarmer: () => dispatch(initialFarmer()),
     initCustomer: () => dispatch(initialCustomer()),
     initCancelledStalls: () => dispatch(initialCancelledStalls()),
-    fetchFarmerList: (payload) => dispatch(fetchFarmerList(payload)),
-    fetchCustomerList: (payload) => dispatch(fetchCustomerList(payload)),
-    fetchCancelledStallsList: (payload) => dispatch(fetchCancelledStallsList(payload)),
-  };
-};
+    fetchFarmerList: payload => dispatch(fetchFarmerList(payload)),
+    fetchCustomerList: payload => dispatch(fetchCustomerList(payload)),
+    fetchCancelledStallsList: payload =>
+      dispatch(fetchCancelledStallsList(payload)),
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -92,8 +98,7 @@ const mapStateToProps = (state, ownProps) => {
     farmerList: state.adminReducer.farmerList,
     customerList: state.adminReducer.customerList,
     cancelledStallsList: state.adminReducer.cancelledStallsList,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);
-
+export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen)

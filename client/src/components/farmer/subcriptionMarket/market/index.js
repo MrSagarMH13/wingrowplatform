@@ -1,118 +1,120 @@
-import React, { useEffect, useState } from "react";
-import AccessDeniedPage from "../../../../common/Access";
-import ErrorPage from "../../../../common/Error";
-import { useTranslation } from "react-i18next";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Button } from "primereact/button";
-import { baseUrl } from "../../../../services/PostAPI";
-import { API_PATH, ROUTE_PATH } from "../../../../constant/urlConstant";
-import { Dropdown } from "primereact/dropdown";
-import axios from "axios";
-import { ProgressSpinner } from "primereact/progressspinner";
+import React, { useEffect, useState } from 'react'
+import AccessDeniedPage from '../../../../common/Access'
+import ErrorPage from '../../../../common/Error'
+import { useTranslation } from 'react-i18next'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Button } from 'primereact/button'
+import { baseUrl } from '../../../../services/PostAPI'
+import { API_PATH, ROUTE_PATH } from '../../../../constant/urlConstant'
+import { Dropdown } from 'primereact/dropdown'
+import axios from 'axios'
+import { ProgressSpinner } from 'primereact/progressspinner'
 
-const MarketComponent = (props) => {
-  const { isPageLevelError, marketList, setCity } = props;
+const MarketComponent = props => {
+  const { isPageLevelError, marketList, setCity } = props
 
-  const { t } = useTranslation();
-  const navigate = useNavigate();
+  const { t } = useTranslation()
+  const navigate = useNavigate()
 
-  const [loading, setLoading] = useState(false);
-  const location = useLocation();
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [filteredMarkets, setFilteredMarkets] = useState([]);
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState({});
+  const [loading, setLoading] = useState(false)
+  const location = useLocation()
+  const [selectedState, setSelectedState] = useState(null)
+  const [selectedCity, setSelectedCity] = useState(null)
+  // eslint-disable-next-line
+  const [filteredMarkets, setFilteredMarkets] = useState([])
+  const [states, setStates] = useState([])
+  const [cities, setCities] = useState({})
 
   useEffect(() => {
     const fetchStates = async () => {
       try {
-        const response = await axios.get(`${baseUrl}${API_PATH.STATE.FETCH}`);
+        const response = await axios.get(`${baseUrl}${API_PATH.STATE.FETCH}`)
         const formattedStates = response.data.states
-          .filter((state) => state.stateName)
-          .map((state) => ({
+          .filter(state => state.stateName)
+          .map(state => ({
             label: state.stateName,
             value: state._id,
-          }));
-        setStates(formattedStates);
+          }))
+        setStates(formattedStates)
       } catch (error) {
-        console.error("Error fetching states:", error);
+        console.error('Error fetching states:', error)
       }
-    };
+    }
 
-    fetchStates();
-  }, []);
-  const fetchCities = async (stateId) => {
+    fetchStates()
+  }, [])
+  const fetchCities = async stateId => {
     try {
       const response = await axios.get(
         `${baseUrl}${API_PATH.CITY.FETCH}?stateId=${stateId}`
-      );
-      const formattedCities = response.data.map((city) => ({
+      )
+      const formattedCities = response.data.map(city => ({
         label: city.name,
         value: city.name,
-      }));
-      setCities((prevCities) => ({
+      }))
+      setCities(prevCities => ({
         ...prevCities,
         [stateId]: formattedCities,
-      }));
+      }))
     } catch (error) {
-      console.error("Error fetching cities:", error);
+      console.error('Error fetching cities:', error)
     }
-  };
+  }
 
-  const handleStateChange = (e) => {
-    const stateId = e.value;
-    setSelectedState(stateId);
-    setSelectedCity(null);
-    setFilteredMarkets([]);
-    fetchCities(stateId);
-  };
+  const handleStateChange = e => {
+    const stateId = e.value
+    setSelectedState(stateId)
+    setSelectedCity(null)
+    setFilteredMarkets([])
+    fetchCities(stateId)
+  }
 
-  const handleCityChange = (e) => {
-    const city = e.value;
-    setSelectedCity(city);
-    setLoading(true);
+  const handleCityChange = e => {
+    const city = e.value
+    setSelectedCity(city)
+    setLoading(true)
 
-    const marketsInCity = marketList[city] || [];
-    setFilteredMarkets(marketsInCity);
-    setCity(city);
-    setLoading(false);
-  };
+    const marketsInCity = marketList[city] || []
+    setFilteredMarkets(marketsInCity)
+    setCity(city)
+    setLoading(false)
+  }
 
   useEffect(() => {
     if (selectedCity) {
-      setLoading(true);
-      const marketsInCity = marketList[selectedCity] || [];
-      setFilteredMarkets(marketsInCity);
-      setLoading(false);
+      setLoading(true)
+      const marketsInCity = marketList[selectedCity] || []
+      setFilteredMarkets(marketsInCity)
+      setLoading(false)
     }
-  }, [selectedCity, marketList]);
+  }, [selectedCity, marketList])
 
-  const shouldRenderFullPageError = () => isPageLevelError;
-  const shouldRenderMarketList = () => true;
+  const shouldRenderFullPageError = () => isPageLevelError
+  const shouldRenderMarketList = () => true
   const shouldRenderNotFoundView = () =>
-    !shouldRenderFullPageError && !shouldRenderMarketList;
-
-  const marketOption = Object.keys(marketList).flatMap((marketKey) => {
-    const markets = marketList[marketKey];
+    !shouldRenderFullPageError && !shouldRenderMarketList
+  // eslint-disable-next-line
+  const marketOption = Object.keys(marketList).flatMap(marketKey => {
+    const markets = marketList[marketKey]
     if (markets.length > 0) {
-      return markets.map((market) => {
+      return markets.map(market => {
         return {
           label: market.name,
           value: market.name,
           marketDay: market.marketDay,
-        };
-      });
+        }
+      })
     }
-    return [];
-  });
+    return []
+  })
 
-  const currentPath = location.pathname;
-  localStorage.setItem("setprevpath", currentPath);
+  const currentPath = location.pathname
+  localStorage.setItem('setprevpath', currentPath)
+  localStorage.setItem('marketOptions', JSON.stringify(marketOption))
   const handleMarket = () => {
     const marketPath = `${ROUTE_PATH.BOOKING.STALL}`
-    navigate(marketPath);
-  };
+    navigate(marketPath)
+  }
 
   return (
     <div>
@@ -123,16 +125,15 @@ const MarketComponent = (props) => {
           {shouldRenderFullPageError() && <ErrorPage />}
           {shouldRenderNotFoundView() && <AccessDeniedPage />}
           {shouldRenderMarketList() && (
-            <div className="text-center mt-3 px-5">
-              <div className="">
-                <div className="text-left">
-                  <div className="d-inline-block">
-                    <Link to="/farmer" className="text-d-none">
+            <div className='text-center mt-3 px-5'>
+              <div className=''>
+                <div className='text-left'>
+                  <div className='d-inline-block'>
+                    <Link to='/farmer' className='text-d-none'>
                       <Button
-                        className="p-button-rounded flex justify-content-start"
-                        icon="pi pi-angle-left mr-2"
-                      >
-                        {t("back")}
+                        className='p-button-rounded flex justify-content-start'
+                        icon='pi pi-angle-left mr-2'>
+                        {t('back')}
                       </Button>
                     </Link>
                   </div>
@@ -142,8 +143,8 @@ const MarketComponent = (props) => {
                   value={selectedState}
                   options={states}
                   onChange={handleStateChange}
-                  placeholder="Select a State"
-                  className="m-3"
+                  placeholder='Select a State'
+                  className='m-3'
                 />
 
                 {selectedState && (
@@ -151,31 +152,36 @@ const MarketComponent = (props) => {
                     value={selectedCity}
                     options={cities[selectedState] || []}
                     onChange={handleCityChange}
-                    placeholder="Select a City"
+                    placeholder='Select a City'
                   />
                 )}
 
-                <div className="mt-3">
-                <iframe width="80%" height="315" src="https://www.youtube.com/embed/t-fevz9t6iU?si=q9VkMl7NKlAkZIQ_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                <div className='mt-3'>
+                  <iframe
+                    width='80%'
+                    height='315'
+                    src='https://www.youtube.com/embed/t-fevz9t6iU?si=q9VkMl7NKlAkZIQ_'
+                    title='YouTube video player'
+                    frameborder='0'
+                    allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share'
+                    referrerpolicy='strict-origin-when-cross-origin'></iframe>
                 </div>
               </div>
-              <div className="d-inline-block m-3">
-        
-                      <Button
-                      onClick={() => handleMarket()}
-                      disabled={selectedCity ? false : true}
-                        className="p-button-rounded flex justify-content-start"
-                        icon="pi pi-angle-right mr-2"
-                      >
-                        {t("Procced")}
-                      </Button>
-                  </div>
+              <div className='d-inline-block m-3'>
+                <Button
+                  onClick={() => handleMarket()}
+                  disabled={selectedCity ? false : true}
+                  className='p-button-rounded flex justify-content-start'
+                  icon='pi pi-angle-right mr-2'>
+                  {t('Proceed')}
+                </Button>
+              </div>
             </div>
           )}
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MarketComponent;
+export default MarketComponent
