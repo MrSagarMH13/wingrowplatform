@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'primereact/button'
 import { Link } from 'react-router-dom'
 import { WINGROW_LOGO } from '../../assets/images'
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
   const iconList = [
@@ -35,14 +36,16 @@ const Footer = () => {
     },
   ]
 
-  const linkList = [
-    { id: 0, label: 'Home', link: '/' },
+  const { t } = useTranslation()
 
-    { id: 2, label: 'Farmers', link: '/farmers/*' },
-    { id: 3, label: 'Register', link: '/register' },
-    { id: 1, label: 'Customers', link: '/customer' },
-    { id: 4, label: 'Stall Bookings', link: '/subscription' },
-    { id: 5, label: 'Terms and Conditions', link: '/terms' },
+  const linkList = [
+    { id: 0, label: t('home'), link: '/' },
+
+    { id: 2, label: t('farmer'), link: '/farmers/*' },
+    { id: 3, label: t('register'), link: '/register' },
+    { id: 1, label: t('customers'), link: '/customer' },
+    { id: 4, label: t('stall_bookings'), link: '/subscription' },
+    { id: 5, label: t('Terms_of_service'), link: '/terms' },
   ]
 
   return (

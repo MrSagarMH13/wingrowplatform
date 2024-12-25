@@ -48,7 +48,7 @@ const MzOtpInput = ({
               placeholder={placeholder}
               className={classNames({ 'p-invalid': fieldState.invalid })}
               style={{ width: '100%' }}
-              integerOnly={integerOnly}
+              // integerOnly={integerOnly}
             />
           )}
         />
