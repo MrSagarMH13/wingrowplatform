@@ -60,7 +60,7 @@ const Footer = () => {
                 className='w-5rem'
               />
               <div className='font-bold ml-2 '>
-                Wingrow Agritech Innovations Pvt. Ltd{' '}
+                {t('Company')}{' '}
               </div>
             </div>
 
@@ -78,13 +78,8 @@ const Footer = () => {
           </div>
 
           <div className='col-12 md:col-4 mb-2 p-1 text-center'>
-            <div className='font-bold text-red-600 '>Address</div>
-            <p className='text-white'>
-              <span className=''>Wingrow Agritech Innovations Pvt. Ltd </span>{' '}
-              <br />
-              Office no.208, Times Square building, Pune satara road, Pune
-              411037
-            </p>
+            <div className='font-bold text-red-600 '>{t('address')}</div>
+            <p className='text-white'>{t('Address_of_company')}</p>
             <div>
               <Button
                 label='+91 777 600 3700'
@@ -106,13 +101,8 @@ const Footer = () => {
             </div>
           </div>
           <div className='col-12 md:col-4 mb-2 p-1 text-center'>
-            <div className='font-bold text-red-600 '>About the company</div>
-            <p className='text-white'>
-              We at Wingrow Agritech facilitate direct interaction between
-              consumers and farmers. Consumers get access to produce direct from
-              farms which is much fresher and lasts longer, at reasonable
-              prices.
-            </p>
+            <div className='font-bold text-red-600 '>{t('About_the_company')}</div>
+            <p className='text-white'>{t('about')}</p>
             <div className='text-center flex justify-content-center gap-2'>
               {iconList.map(icon => (
                 <Button
@@ -128,9 +118,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className='text-center text-xs font-bold mb-0 w-full'>
-            &copy; Wingrow Agritech. All rights reserved 2024.
-          </div>
+          <div className='text-center text-xs font-bold mb-0 w-full'>{t('rights')}</div>
         </div>
       </div>
     </>

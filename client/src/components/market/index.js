@@ -151,7 +151,7 @@ const MarketComponent = props => {
                   value={selectedState}
                   options={states}
                   onChange={handleStateChange}
-                  placeholder='Select a State'
+                  placeholder={t('Select_a_State')}
                   className='m-3'
                 />
 
@@ -217,7 +217,7 @@ const MarketComponent = props => {
                     </div>
                   </>
                 ) : (
-                  <h2>Please select state and city</h2>
+                  <h2>{t('Please_select_state_and_city')}</h2>
                 )}
               </div>
             </div>

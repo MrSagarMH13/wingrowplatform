@@ -571,5 +571,15 @@
   "Next": "पुढे",
   "We got the perfect products for your needs": "आम्हाला तुमच्या गरजांसाठी परिपूर्ण उत्पादने मिळाली आहेत",
   "Help us improve your experience": "तुमचा अनुभव सुधारण्यास आम्हाला मदत करा",
-  "days_since_release": "हा व्हिडिओ रिलीज होऊन {{number_of_days}} दिवस झाले आहेत"
+  "days_since_release": "हा व्हिडिओ रिलीज होऊन {{number_of_days}} दिवस झाले आहेत",
+  "Number_of_Booked_Stalls": "बुक केलेल्या स्टॉलची संख्या",
+  "Address_of_company": "विंग्रो एग्रीटेक इनोव्हेशन्स प्रायव्हेट लिमिटेड, ऑफिस क्र. २०८, टाइम्स स्क्वेअर बिल्डिंग, पुणे-सातारा रोड, पुणे - ४११०३७",
+  "About_the_company": "कंपनीबद्दल",
+  "customer_feedback": "ग्राहकांची मते",
+  "Company": "विंग्रो एग्रीटेक इनोव्हेशन्स प्रायव्हेट लिमिटेड",
+  "Resend_OTP": "ओटीपी पुन्हा पाठवा",
+  "No_market_today": "आज बाजार नाही",
+  "Select_a_State": "राज्य निवडा",
+  "Please_select_state_and_city": "कृपया राज्य आणि शहर निवडा",
+  "rights": "© विंग्रो एग्रीटेक. सर्व अधिकार राखीव 2024।"
 }

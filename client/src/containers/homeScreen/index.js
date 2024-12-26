@@ -235,7 +235,7 @@ const HomeScreen = () => {
           />
         </div>
         <h1 className='px-2 text-2xl md:text-3xl'>
-          Number of Booked Stalls : {2000}
+          {t("Number_of_Booked_Stalls")} : {2000}
         </h1>
         <SliderComponent slides={slides} />
         <div className='md:px-8 px-2'>
@@ -326,7 +326,7 @@ const HomeScreen = () => {
         </div>
       )}
       <div className='p-3'>
-        <h3 className='text-center'>Customer Feedback</h3>
+        <h3 className='text-center'>{t('customer_feedback')}</h3>
 
         <div>
           {filteredFeedbacks?.length === 0 ? (
@@ -344,10 +344,12 @@ const HomeScreen = () => {
                     className='text-center d-flex flex-column justify-content-between surface-0 shadow-1 p-4 border-1 border-50 border-round h-full hover:shadow-5 '
                     style={{ height: '100%' }}>
                     <div className='mb-3'>
-                    <h4>{`${feedback?.user?.firstname || ''} ${feedback?.user?.lastname || ''}`}</h4>
+                      <h4>{`${feedback?.user?.firstname || ''} ${
+                        feedback?.user?.lastname || ''
+                      }`}</h4>
                     </div>
                     <div className='mb-3'>
-                      <p>{feedback?.message ?? ""}</p>
+                      <p>{feedback?.message ?? ''}</p>
                     </div>
                     <div className='d-flex justify-content-center'>
                       <Rating

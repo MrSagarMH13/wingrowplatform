@@ -239,8 +239,11 @@ const LoginComponent = props => {
                         wrapperClass={'p-float-label'}
                       />
                       <Button
+                        // label={t('Resend_OTP')}
                         label={
-                          otpSent ? `Resend OTP in ${countdown}s` : 'Resend OTP'
+                          otpSent
+                            ? `${t('Resend_OTP')} ${countdown}s`
+                            : `${t('Resend_OTP')}`
                         }
                         className='border-none text-black bg-transparent outline-none hover:underline'
                         onClick={handleResendOtp}
@@ -249,7 +252,7 @@ const LoginComponent = props => {
                       <div className='flex justify-content-between gap-2 w-full'>
                         <div className='mb-3 w-full'>
                           <Button
-                            label='Back'
+                            label={t('back')}
                             className='mt-3 border-round-sm'
                             onClick={handlePrevStep}
                             severity='danger'
@@ -258,7 +261,7 @@ const LoginComponent = props => {
                         <div className='mb-3 w-full'>
                           <Button
                             disabled={isLoading}
-                            label='submit'
+                            label={t('submit')}
                             type='submit'
                             className='mt-3 border-round-sm'
                           />

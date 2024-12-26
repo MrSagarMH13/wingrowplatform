@@ -217,7 +217,7 @@ const RegisterComponent = props => {
                 <h1 className='text-900 font-bold text-xl md:text-1xl mb-2'>
                   {t('welcome_message')}
                 </h1>
-                <div className='text-600 mb-2'>Signup with us</div>
+                <div className='text-600 mb-2'>{t('signup_message')}</div>
 
                 <form
                   onSubmit={handleSubmit(onSubmit)}
@@ -320,7 +320,7 @@ const RegisterComponent = props => {
                       </div>
                       <div className='col-12'>
                         <Button
-                          label='Next'
+                          label={t('Next')}
                           type='button'
                           onClick={handleNextStepOrSendOTP}
                           className='mt-3 border-round-sm'
