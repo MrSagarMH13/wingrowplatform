@@ -7,7 +7,7 @@ import { MSG91_AUTH_KEY, TEMPLATE_ID_LOGIN } from '../../constant/msg91'
 import MzAutoComplete from '../../common/MzForm/MzAutoComplete'
 import MzPhoneInput from '../../common/MzForm/MzPhoneInput'
 import { useTranslation } from 'react-i18next'
-import MzOptInput from '../../common/MzForm/MzOptInput'
+import MzOtpInput from '../../common/MzForm/MzOtpInput'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 const LoginComponent = props => {
@@ -223,7 +223,7 @@ const LoginComponent = props => {
                   )}
                   {step === 1 && (
                     <>
-                      <MzOptInput
+                      <MzOtpInput
                         control={control}
                         name={FORM_FIELDS_NAME.OTP.name}
                         label={FORM_FIELDS_NAME.OTP.label}
@@ -239,7 +239,6 @@ const LoginComponent = props => {
                         wrapperClass={'p-float-label'}
                       />
                       <Button
-                        // label={t('Resend_OTP')}
                         label={
                           otpSent
                             ? `${t('Resend_OTP')} ${countdown}s`

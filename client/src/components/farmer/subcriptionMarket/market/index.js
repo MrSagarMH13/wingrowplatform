@@ -152,7 +152,7 @@ const MarketComponent = props => {
                     value={selectedCity}
                     options={cities[selectedState] || []}
                     onChange={handleCityChange}
-                    placeholder='Select a City'
+                    placeholder={t('Select_a_City')}
                   />
                 )}
 

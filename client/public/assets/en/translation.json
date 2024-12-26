@@ -442,7 +442,9 @@
   "Resend_OTP": "Resend OTP",
   "OTP_sent": "OTP sent",
   "No_market_today": "No market today",
-  "Select_a_State": "Select a State",
+  "No_Markets_Found": "No Markets Found",
   "Please_select_state_and_city": "Please select state and city",
+  "Select_a_State": "Select a State",
+  "Select_a_City": "Select a City",
   "rights": "© Wingrow Agritech. All rights reserved 2024."
 }
