@@ -570,5 +570,67 @@
     "Sweets": "मिठाइयाँ",
     "Biryani": "बिरयानी",
     "Namkeen": "नमकीन",
-    "days_since_release": "इस वीडियो को रिलीज़ हुए {{number_of_days}} दिन हो चुके हैं"
+    "newToWingrow": "विंग्रोव पर नए हैं?",
+    "alreadyMember": "पहले से सदस्य हैं?",
+    "SignUpwith":"हमारे साथ साइन अप करें",
+    "OTPFORM":{
+        "otp": "OTP",
+        "otpRequired": "OTP आवश्यक है",
+        "resendOtp": "OTP फिर से भेजें",
+        "back": "पिछला पृष्ठ",
+      "submit": "जमा करें",
+      "firstNameLabel": "अपना पहला नाम दर्ज करें",
+      "lastNameLabel": "अपना आखिरी नाम दर्ज करें",
+      "mobileNumberLabel": "अपना मोबाइल नंबर दर्ज करें",
+      "selectTypeLabel": "अपना प्रकार चुनें",
+      "addressLabel": "अपना पता दर्ज करें"
+    },
+    "Footer":{
+        "footer_text":"विंग्रो एग्रीटेक. सर्व अधिकार सुरक्षित २०२४.",
+        "address":"पत्ता",
+        "about":"कंपनी के बारे में",
+        "company_name":"विंग्रो एग्रीटेक इनोवेशन्स प्रा. लि.",
+        "office_address":"ऑफिस नं. २०८, टाइम्स स्क्वेअर बिल्डिंग, पुणे-सातारा रोड, पुणे ४११०३७",
+        "company_description":"विंग्रो एग्रीटेक में हम उपभोक्ताओं और किसानों के बीच सीधे संवाद को सुगम बनाते हैं। उपभोक्ताओं को खेतों से सीधे ताजा और लंबे समय तक टिकने वाला उत्पाद वाजिब कीमतों पर मिलता है।"
+    },
+  
+    "signupWithUs": "हमसे साइन अप करें",
+    "loginNow": "अब लॉगिन करें",
+    "days_since_release": "इस वीडियो को रिलीज़ हुए {{number_of_days}} दिन हो चुके हैं",
+    
+
+  "signin": {
+    "form": {
+        "label":{
+              "role": "भूमिका",
+      "phonenumber": "फ़ोन नंबर"
+        },
+        "placeholder": {
+            "selectrole": "भूमिका चुनें"
+          }
+    },
+   
+    "error": {
+      "role_required": "भूमिका आवश्यक है",
+      "phone_required": "फ़ोन नंबर आवश्यक है"
+    },
+    "Fetch": "प्राप्त करें"
+  },
+  "signup": {
+    "form": {
+      "first_name": "पहला नाम",
+      "last_name": "अंतिम नाम",
+      "phone_number": "फ़ोन नंबर",
+      "Role": "भूमिका",
+      "Address": "पता"
+    },
+    "error": {
+      "first_name": "पहला नाम आवश्यक है",
+      "last_name": "अंतिम नाम आवश्यक है",
+      "phone_number": "मोबाइल नंबर आवश्यक है",
+      "Role": "प्रकार आवश्यक है",
+      "Address": "पता आवश्यक है"
+    },
+    "Next": "आगे"
+  }
 }

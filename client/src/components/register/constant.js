@@ -1,40 +1,40 @@
 export const FORM_FIELDS_NAME = {
   FIRST_NAME: {
     name: 'firstname',
-    label: 'First Name',
+    label: 'signup.form.first_name',
     type: 'text',
-    placeholder: 'Enter your First Name',
+    placeholder: 'OTPFORM.firstNameLabel',
     rules: {
-      required: 'First Name is required',
+      required: 'signup.error.first_name',
     },
   },
 
   LAST_NAME: {
     name: 'lastname',
-    label: 'Last Name',
+    label:'signup.form.last_name',
     type: 'text',
-    placeholder: 'Enter your Last Name',
+    placeholder: 'OTPFORM.lastNameLabel',
     rules: {
-      required: 'Last Name is required',
+      required: 'signup.error.last_name',
     },
   },
   PHONE_NUMBER: {
     name: 'phone',
-    label: 'Mobile Number',
+    label: 'signup.form.phone_number',
     type: 'number',
-    placeholder: 'Enter your Mobile Number',
+    placeholder: 'OTPFORM.mobileNumberLabel',
     rules: {
-      required: 'Mobile Number is required',
+      required: 'signup.error.phone_number',
     },
   },
 
   OTP: {
     name: 'otp',
-    label: 'OTP',
+    label: 'OTPFORM.otp',
     type: 'number',
     placeholder: 'Enter your OTP',
     rules: {
-      required: 'OTP is required',
+      required: 'OTPFORM.otpRequired',
       length: {
         value: 4,
         message: 'OTP must be 4 characters',
@@ -44,11 +44,11 @@ export const FORM_FIELDS_NAME = {
 
   TYPE: {
     name: 'type',
-    label: 'Role',
+    label: 'signup.form.Role',
     type: 'text',
-    placeholder: 'Enter your Type',
+    placeholder: 'OTPFORM.selectTypeLabel',
     rules: {
-      required: 'Type is required',
+      required: 'signup.error.Role',
     },
   },
 
@@ -64,11 +64,11 @@ export const FORM_FIELDS_NAME = {
 
   ADDRESS: {
     name: 'address',
-    label: 'Address',
+    label: 'signup.form.Address',
     type: 'text',
-    placeholder: 'Enter your Address',
+    placeholder: 'OTPFORM.addressLabel',
     rules: {
-      required: 'Address is required',
+      required: 'signup.error.Address',
     },
   },
 }

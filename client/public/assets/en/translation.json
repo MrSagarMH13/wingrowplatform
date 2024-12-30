@@ -434,5 +434,70 @@
     "Antic": "Antic",
     "Flower-Kobi": "Flower-Kobi",
     "Snacks": "Snacks",
-    "Exotic": "Exotic"
+    "Exotic": "Exotic",
+    "SignUpwith":"Signup with us",
+     "newToWingrow": "New to wingrow?",
+   
+     "signupWithUs": "Signup with us",
+     "OTPFORM":{
+        "otp": "OTP",
+        "otpRequired": "OTP is required",
+        "resendOtp": "Resend OTP",
+        "back": "Back",
+        "submit":"Submit",
+        "firstNameLabel": "Enter your First Name",
+    "lastNameLabel": "Enter your Last Name",
+    "mobileNumberLabel": "Enter your Mobile Number",
+    "selectTypeLabel": "Select your Type",
+    "addressLabel": "Enter your Address"
+     },
+     "Footer":{
+        "footer_text":"Wingrow Agritech. All rights reserved 2024.",
+         "address":"Address",
+         "about":"About the company",
+         "company_name":"Wingrow Agritech Innovations Pvt. Ltd",
+         "office_address":"Office no.208, Times Square building, Pune satara road, Pune 411037",
+         "company_description":"We at Wingrow Agritech facilitate direct interaction between consumers and farmers. Consumers get access to produce direct from farms which is much fresher and lasts longer, at reasonable prices."
+
+     },
+     "loginNow": "Login now",
+    "alreadyMember": "Already Member?",
+    "signin":{  
+        "form":{
+            "label":{
+                "role":"role",
+            "phonenumber":"Phone Number"
+            },
+            "placeholder":{
+                "selectrole":"Select an role"
+            }
+        },
+     
+        "error":{
+            "role_required":"role is required",
+            "phone_required":"phone number is required"
+        },
+         "Fetch": "fetch"
+
+     },
+     "signup":{
+        "form":{
+            "first_name":"First Name",
+            "last_name":"Last Name",
+            "phone_number":"Phone Number",
+            "Role":"Role",
+            "Address":"Address"
+            
+        },
+        "error":{
+            "first_name":"First Name is required",
+            "last_name":"Last Name is required",
+            "phone_number":"Mobile Number is required",
+            "Role":"Type is required",
+            "Address":"Address is required"
+            
+        },
+        "Next":"Next"
+     }
+
 }

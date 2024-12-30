@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { init_verification } from '../../redux/action/auth/smg91'
 import { useDispatch } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 const RegisterComponent = props => {
   const {
     isLoading,
@@ -173,7 +173,7 @@ const RegisterComponent = props => {
 
   const getFormErrorMessage = name => {
     return (
-      errors[name] && <small className='p-error'>{errors[name].message}</small>
+      errors[name] && <small className='p-error'>{t(errors[name].message)}</small>
     )
   }
 
@@ -217,7 +217,7 @@ const RegisterComponent = props => {
                 <h1 className='text-900 font-bold text-xl md:text-1xl mb-2'>
                   {t('welcome_message')}
                 </h1>
-                <div className='text-600 mb-2'>Signup with us</div>
+                <div className='text-600 mb-2'>{t('SignUpwith')}</div>
 
                 <form
                   onSubmit={handleSubmit(onSubmit)}
@@ -228,7 +228,8 @@ const RegisterComponent = props => {
                         <MzInput
                           name={FORM_FIELDS_NAME.FIRST_NAME.name}
                           control={control}
-                          label={FORM_FIELDS_NAME.FIRST_NAME.label}
+                          label={t(FORM_FIELDS_NAME.FIRST_NAME.label)}
+                          placeholder={t(FORM_FIELDS_NAME.FIRST_NAME.placeholder)}
                           rules={FORM_FIELDS_NAME.FIRST_NAME.rules}
                           isError={errors[FORM_FIELDS_NAME.FIRST_NAME.name]}
                           errorMsg={getFormErrorMessage(
@@ -241,9 +242,10 @@ const RegisterComponent = props => {
                         <MzInput
                           name={FORM_FIELDS_NAME.LAST_NAME.name}
                           control={control}
-                          label={FORM_FIELDS_NAME.LAST_NAME.label}
+                          label={t(FORM_FIELDS_NAME.LAST_NAME.label)}
                           rules={FORM_FIELDS_NAME.LAST_NAME.rules}
                           isError={errors[FORM_FIELDS_NAME.LAST_NAME.name]}
+                          placeholder={t(FORM_FIELDS_NAME.LAST_NAME.placeholder)}
                           errorMsg={getFormErrorMessage(
                             FORM_FIELDS_NAME.LAST_NAME.name
                           )}
@@ -256,7 +258,8 @@ const RegisterComponent = props => {
                             <MzPhoneInput
                               control={control}
                               name={FORM_FIELDS_NAME.PHONE_NUMBER.name}
-                              label={FORM_FIELDS_NAME.PHONE_NUMBER.label}
+                              label={t(FORM_FIELDS_NAME.PHONE_NUMBER.label)}
+                              placeholder={t(FORM_FIELDS_NAME.PHONE_NUMBER.placeholder)}
                               rules={FORM_FIELDS_NAME.PHONE_NUMBER.rules}
                               isError={
                                 errors[FORM_FIELDS_NAME.PHONE_NUMBER.name]
@@ -276,9 +279,10 @@ const RegisterComponent = props => {
                           optionLabel={'name'}
                           optionValue={'value'}
                           options={data.type}
-                          label={FORM_FIELDS_NAME.TYPE.label}
+                          label={t(FORM_FIELDS_NAME.TYPE.label)}
                           rules={FORM_FIELDS_NAME.TYPE.rules}
                           isError={errors[FORM_FIELDS_NAME.TYPE.name]}
+                          placeholder={t(FORM_FIELDS_NAME.TYPE.placeholder)}
                           errorMsg={getFormErrorMessage(
                             FORM_FIELDS_NAME.TYPE.name
                           )}
@@ -309,7 +313,8 @@ const RegisterComponent = props => {
                         <MzInput
                           name={FORM_FIELDS_NAME.ADDRESS.name}
                           control={control}
-                          label={FORM_FIELDS_NAME.ADDRESS.label}
+                          label={t(FORM_FIELDS_NAME.ADDRESS.label)}
+                          placeholder={t(FORM_FIELDS_NAME.ADDRESS.placeholder)}
                           rules={FORM_FIELDS_NAME.ADDRESS.rules}
                           isError={errors[FORM_FIELDS_NAME.ADDRESS.name]}
                           errorMsg={getFormErrorMessage(
@@ -320,14 +325,21 @@ const RegisterComponent = props => {
                       </div>
                       <div className='col-12'>
                         <Button
-                          label='Next'
+                          label={t('signup.Next')}
                           type='button'
                           onClick={handleNextStepOrSendOTP}
                           className='mt-3 border-round-sm'
                           disabled={isLoading}
                         />
+                          <div className='mt-3'>
+                        <p>{t('alreadyMember')} <Link to="/login" className="text-decoration-underline text-green-500">
+                          {t('loginNow')}
+                        </Link></p>
                       </div>
+                      </div>
+                    
                     </div>
+
                   )}
 
                   {step === 1 && (
@@ -335,7 +347,7 @@ const RegisterComponent = props => {
                       <MzOtpInput
                         control={control}
                         name={FORM_FIELDS_NAME.OTP.name}
-                        label={FORM_FIELDS_NAME.OTP.label}
+                        label={t(FORM_FIELDS_NAME.OTP.label)}
                         placeholder={FORM_FIELDS_NAME.OTP.placeholder}
                         type={FORM_FIELDS_NAME.OTP.type}
                         isError={errors[FORM_FIELDS_NAME.OTP.name]}
@@ -349,7 +361,7 @@ const RegisterComponent = props => {
                       />
                       <Button
                         label={
-                          otpSent ? `Resend OTP in ${countdown}s` : 'Resend OTP'
+                          otpSent ? `Resend OTP in ${countdown}s` : t('OTPFORM.resendOtp')
                         }
                         className='border-none text-black bg-transparent outline-none hover:underline'
                         onClick={handleResendOtp}
@@ -358,7 +370,7 @@ const RegisterComponent = props => {
                       <div className='flex justify-content-between gap-2 w-full'>
                         <div className='mb-3 w-full'>
                           <Button
-                            label='Back'
+                            label={t('back')}
                             className='mt-3 border-round-sm'
                             onClick={handlePrevStep}
                             severity='danger'
@@ -366,7 +378,7 @@ const RegisterComponent = props => {
                         </div>
                         <div className='mb-3 w-full'>
                           <Button
-                            label='Submit'
+                            label={t('submit')}
                             type='submit'
                             className='mt-3 border-round-sm'
                           />

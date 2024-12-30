@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { ROUTE_PATH } from '../constant/urlConstant'
 import Header from '../common/Header'
-import Footer from '../common/Footer'
+
 import LoginScreen from '../containers/loginScreen'
 import RegisterScreen from '../containers/registerScreen'
 import HomeScreen from '../containers/homeScreen'
@@ -73,7 +73,7 @@ const Routing = () => {
           </Routes>
         </main>
 
-        <Footer />
+       
       </React.Fragment>
     )
   }
@@ -100,7 +100,7 @@ const Routing = () => {
           </Routes>
         </main>
 
-        <Footer />
+     
       </React.Fragment>
     )
   }
@@ -132,7 +132,7 @@ const Routing = () => {
             <Route path='*' element={<Navigate to={ROUTE_PATH.ADMIN.HOME} />} />
           </Routes>
         </main>
-        <Footer />
+
       </React.Fragment>
     )
   }
@@ -155,7 +155,7 @@ const Routing = () => {
           <Route path='*' element={<Navigate to={ROUTE_PATH.BASE.HOME} />} />
         </Routes>
       </main>
-      <Footer />
+
     </React.Fragment>
   )
 }

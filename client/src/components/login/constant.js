@@ -1,36 +1,36 @@
 export const FORM_FIELDS_NAME = {
   PHONE_NUMBER: {
     name: 'phoneNumber',
-    label: 'Phone Number',
+    label: 'signin.form.label.phonenumber',
     type: 'tel',
-    placeholder: 'Enter phone number',
+    placeholder: 'Enter phone nu',
     rules: {
-      required: 'Phone number is required',
+      required: 'signin.error.phone_required',
     },
   },
   ROLE: {
     name: 'Role',
-    label: 'role',
+    label: 'signin.form.label.role',
     type: 'dropdown',
     optionLabel: 'name',
     optionValue: 'value',
     rules: {
-      required: 'Role is required',
+      required: 'signin.error.role_required',
     },
     options: [
       { name: 'Farmer', value: 'producer' },
       { name: 'Customer', value: 'customer' },
     ],
-    placeholder: 'Select an role',
+    placeholder: 'signin.form.placeholder.selectrole',
   },
 
   OTP: {
     name: 'otp',
-    label: 'OTP',
+    label: 'OTPFORM.otp',
     type: 'number',
     placeholder: 'Enter your OTP',
     rules: {
-      required: 'OTP is required',
+      required:  'OTPFORM.otpRequired',
       length: {
         value: 4,
         message: 'OTP must be 4 characters',

@@ -60,7 +60,7 @@ const Footer = () => {
                 className='w-5rem'
               />
               <div className='font-bold ml-2 '>
-                Wingrow Agritech Innovations Pvt. Ltd{' '}
+                {t('Footer.company_name')}{' '}
               </div>
             </div>
 
@@ -78,12 +78,11 @@ const Footer = () => {
           </div>
 
           <div className='col-12 md:col-4 mb-2 p-1 text-center'>
-            <div className='font-bold text-red-600 '>Address</div>
+            <div className='font-bold text-red-600 '>{t('Footer.address')}</div>
             <p className='text-white'>
-              <span className=''>Wingrow Agritech Innovations Pvt. Ltd </span>{' '}
+              <span className=''> {t('Footer.company_name')} </span>{' '}
               <br />
-              Office no.208, Times Square building, Pune satara road, Pune
-              411037
+              {t('Footer.office_address')}
             </p>
             <div>
               <Button
@@ -106,12 +105,9 @@ const Footer = () => {
             </div>
           </div>
           <div className='col-12 md:col-4 mb-2 p-1 text-center'>
-            <div className='font-bold text-red-600 '>About the company</div>
+            <div className='font-bold text-red-600 '>{t('Footer.about')}</div>
             <p className='text-white'>
-              We at Wingrow Agritech facilitate direct interaction between
-              consumers and farmers. Consumers get access to produce direct from
-              farms which is much fresher and lasts longer, at reasonable
-              prices.
+              {t('Footer.company_description')}
             </p>
             <div className='text-center flex justify-content-center gap-2'>
               {iconList.map(icon => (
@@ -129,7 +125,7 @@ const Footer = () => {
             </div>
           </div>
           <div className='text-center text-xs font-bold mb-0 w-full'>
-            &copy; Wingrow Agritech. All rights reserved 2024.
+            &copy; {t('Footer.footer_text')}
           </div>
         </div>
       </div>
