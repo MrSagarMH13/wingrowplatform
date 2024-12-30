@@ -9,6 +9,7 @@ import { baseUrl } from '../../services/PostAPI'
 import axios from 'axios'
 import { API_PATH, ROUTE_PATH } from '../../constant/urlConstant'
 import MarketComponent from '../../components/home/market'
+import Footer from '../../common/Footer/index'
 import {
   CONS,
   FAST_DELIVERY,
@@ -325,6 +326,7 @@ const HomeScreen = () => {
           <FeedbackComponent />
         </div>
       )}
+      {filteredFeedbacks?.length > 0 && (
       <div className='p-3'>
         <h3 className='text-center'>Customer Feedback</h3>
 
@@ -373,6 +375,8 @@ const HomeScreen = () => {
           )}
         </div>
       </div>
+      )}
+       <Footer />
     </>
   )
 }

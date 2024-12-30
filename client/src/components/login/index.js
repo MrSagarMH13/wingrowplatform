@@ -8,6 +8,7 @@ import MzAutoComplete from '../../common/MzForm/MzAutoComplete'
 import MzPhoneInput from '../../common/MzForm/MzPhoneInput'
 import { useTranslation } from 'react-i18next'
 import MzOptInput from '../../common/MzForm/MzOptInput'
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 const LoginComponent = props => {
@@ -139,7 +140,7 @@ const LoginComponent = props => {
 
   const getFormErrorMessage = name => {
     return (
-      errors[name] && <small className='p-error'>{errors[name].message}</small>
+      errors[name] && <small className='p-error'>{t(errors[name].message)}</small>
     )
   }
   return (
@@ -185,10 +186,11 @@ const LoginComponent = props => {
                         <MzAutoComplete
                           control={control}
                           name={FORM_FIELDS_NAME.ROLE.name}
-                          label={FORM_FIELDS_NAME.ROLE.label}
+                          // label={FORM_FIELDS_NAME.ROLE.label}
+                          label={t(FORM_FIELDS_NAME.ROLE.label)}
                           optionLabel={FORM_FIELDS_NAME.ROLE.optionLabel}
                           optionValue={FORM_FIELDS_NAME.ROLE.optionValue}
-                          placeholder={FORM_FIELDS_NAME.ROLE.placeholder}
+                          placeholder={t(FORM_FIELDS_NAME.ROLE.placeholder)}
                           rules={FORM_FIELDS_NAME.ROLE.rules}
                           isError={!!errors[FORM_FIELDS_NAME.ROLE.name]}
                           errorMsg={getFormErrorMessage(
@@ -201,8 +203,8 @@ const LoginComponent = props => {
                       <MzPhoneInput
                         control={control}
                         name={FORM_FIELDS_NAME.PHONE_NUMBER.name}
-                        label={FORM_FIELDS_NAME.PHONE_NUMBER.label}
-                        placeholder={FORM_FIELDS_NAME.PHONE_NUMBER.placeholder}
+                        label={t(FORM_FIELDS_NAME.PHONE_NUMBER.label)}
+                        placeholder={t(FORM_FIELDS_NAME.PHONE_NUMBER.placeholder)}
                         rules={FORM_FIELDS_NAME.PHONE_NUMBER.rules}
                         isError={errors[FORM_FIELDS_NAME.PHONE_NUMBER.name]}
                         errorMsg={getFormErrorMessage(
@@ -211,7 +213,8 @@ const LoginComponent = props => {
                         country='in'
                       />
                       <Button
-                        label='fetch'
+
+                        label={t('signin.Fetch')}
                         disabled={isLoading}
                         onClick={e => {
                           e.preventDefault()
@@ -219,6 +222,11 @@ const LoginComponent = props => {
                         }}
                         className='mt-3 border-round-sm'
                       />
+                      <div className='mt-3'>
+                        <p>{t('newToWingrow')} <Link to="/register" className="text-decoration-underline text-red-500">
+                          {t('signupWithUs')}
+                        </Link></p>
+                      </div>
                     </div>
                   )}
                   {step === 1 && (
@@ -226,7 +234,7 @@ const LoginComponent = props => {
                       <MzOptInput
                         control={control}
                         name={FORM_FIELDS_NAME.OTP.name}
-                        label={FORM_FIELDS_NAME.OTP.label}
+                        label={t(FORM_FIELDS_NAME.OTP.label)}
                         placeholder={FORM_FIELDS_NAME.OTP.placeholder}
                         type={FORM_FIELDS_NAME.OTP.type}
                         isError={errors[FORM_FIELDS_NAME.OTP.name]}
@@ -240,8 +248,9 @@ const LoginComponent = props => {
                       />
                       <Button
                         label={
-                          otpSent ? `Resend OTP in ${countdown}s` : 'Resend OTP'
+                          otpSent ? `Resend OTP in ${countdown}s` : t('OTPFORM.resendOtp')
                         }
+
                         className='border-none text-black bg-transparent outline-none hover:underline'
                         onClick={handleResendOtp}
                         disabled={otpSent}
@@ -249,7 +258,7 @@ const LoginComponent = props => {
                       <div className='flex justify-content-between gap-2 w-full'>
                         <div className='mb-3 w-full'>
                           <Button
-                            label='Back'
+                            label={t('OTPFORM.back')}
                             className='mt-3 border-round-sm'
                             onClick={handlePrevStep}
                             severity='danger'
@@ -258,7 +267,7 @@ const LoginComponent = props => {
                         <div className='mb-3 w-full'>
                           <Button
                             disabled={isLoading}
-                            label='submit'
+                            label={t('OTPFORM.submit')}
                             type='submit'
                             className='mt-3 border-round-sm'
                           />
