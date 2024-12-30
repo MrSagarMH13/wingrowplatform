@@ -211,7 +211,7 @@ const LoginComponent = props => {
                         country='in'
                       />
                       <Button
-                        label='fetch'
+                        label={t('fetch')}
                         disabled={isLoading}
                         onClick={e => {
                           e.preventDefault()

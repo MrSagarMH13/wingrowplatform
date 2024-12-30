@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { ROUTE_PATH } from '../constant/urlConstant'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
@@ -11,24 +11,24 @@ import { USER_ROLE } from '../constant/role/index'
 import CustomerScreen from '../containers/customerScreen'
 import AboutUsScreen from '../containers/aboutScreen'
 import MarketScreen from '../containers/marketScreen'
-
 import StallScreen from '../containers/stallScreen'
 import AdminScreen from '../containers/adminScreen'
 import FarmersListComponent from '../components/admin/farmerList'
 import CustomersListComponent from '../components/admin/customerList'
-
 import FarmerScreen from '../containers/farmerScreen'
 import MyBookingScreen from '../containers/farmerScreen/myBookingScreen'
 import InwardScreen from '../containers/farmerScreen/inwardScreen'
 import OutwardScreen from '../containers/farmerScreen/outwardScreen'
 import InOutDataScreen from '../containers/farmerScreen/inOutDataScreen'
-
 import { isVerify, userRole } from '../redux/selectors/auth/index'
 import SubMarketScreen from '../containers/farmerScreen/subscriptionScreen/subMarketScreen'
 
 const Routing = () => {
   const verified = useSelector(isVerify)
   const role = useSelector(userRole)
+  const location = useLocation()
+
+  const isHomePage = location.pathname === ROUTE_PATH.BASE.HOME
 
   if (role === USER_ROLE.FARMER && verified) {
     return (
@@ -72,8 +72,7 @@ const Routing = () => {
             />
           </Routes>
         </main>
-
-        <Footer />
+        {isHomePage && <Footer />} {/* Render footer only on home page */}
       </React.Fragment>
     )
   }
@@ -99,8 +98,7 @@ const Routing = () => {
             />
           </Routes>
         </main>
-
-        <Footer />
+        {isHomePage && <Footer />} {/* Render footer only on home page */}
       </React.Fragment>
     )
   }
@@ -132,7 +130,7 @@ const Routing = () => {
             <Route path='*' element={<Navigate to={ROUTE_PATH.ADMIN.HOME} />} />
           </Routes>
         </main>
-        <Footer />
+        {isHomePage && <Footer />}
       </React.Fragment>
     )
   }
@@ -155,7 +153,7 @@ const Routing = () => {
           <Route path='*' element={<Navigate to={ROUTE_PATH.BASE.HOME} />} />
         </Routes>
       </main>
-      <Footer />
+      {isHomePage && <Footer />}
     </React.Fragment>
   )
 }
