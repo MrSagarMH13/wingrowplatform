@@ -139,7 +139,7 @@ export default function Index() {
     <>
       <div className='md:p-4 px-2 mb-2'>
         <div className='flex align-items-center'>
-          <h2 className='mr-2 text-xl md:text-3xl'>Live Markets</h2>
+          <h2 className='mr-2 text-xl md:text-3xl'>{t('live_markets')}</h2>
           <hr className='flex-1 p-2' />
         </div>
 
@@ -150,7 +150,7 @@ export default function Index() {
             </div>
           ) : filteredMarkets.length === 0 ? (
             <div className='p-5 text-center'>
-              <h2>No market today</h2>
+              <h2>{t('No_market_today')}</h2>
             </div>
           ) : (
             <div className='w-full'>
@@ -170,12 +170,12 @@ export default function Index() {
                       <div className='flex align-items-center justify-content-center text-xs gap-2'>
                         <Button
                           className='border-round-3xl'
-                          label='View Offers'
+                          label={t('View_Offers')}
                           onClick={() => viewOffers(item)}
                         />
                         <Button
                           className='border-round-3xl'
-                          label='Get Direction'
+                          label={t('get_direction')}
                           onClick={() => window.open(item.location, '_blank')}
                         />
                       </div>
@@ -186,13 +186,13 @@ export default function Index() {
               <div className='flex align-items-center justify-content-center text-xs gap-2'>
                 <Button
                   className='border-round-3xl'
-                  label='Previous'
+                  label={t('Previous')}
                   onClick={handlePrevPage}
                   disabled={currentPage === 1}
                 />
                 <Button
                   className='border-round-3xl'
-                  label='Next'
+                  label={t('Next')}
                   onClick={handleNextPage}
                   disabled={
                     currentPage ===
@@ -206,7 +206,7 @@ export default function Index() {
       </div>
 
       <Dialog
-        header='View Offers'
+        header={t('View_Offers')}
         className='text-center'
         visible={viewMarket}
         onHide={() => setViewMarket(false)}>

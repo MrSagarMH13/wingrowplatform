@@ -138,12 +138,12 @@ const MarketComponent = props => {
                     </Link>
                   </div>
                 </div>
-                <h2>Please select state and city</h2>
+                <h2>{t('please_select_state_and_city')}</h2>
                 <Dropdown
                   value={selectedState}
                   options={states}
                   onChange={handleStateChange}
-                  placeholder='Select a State'
+                  placeholder={t('select_state')}
                   className='m-3'
                 />
 
@@ -152,7 +152,7 @@ const MarketComponent = props => {
                     value={selectedCity}
                     options={cities[selectedState] || []}
                     onChange={handleCityChange}
-                    placeholder='Select a City'
+                    placeholder={t('select_city')}
                   />
                 )}
 

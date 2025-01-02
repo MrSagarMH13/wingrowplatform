@@ -3,7 +3,7 @@ export const FORM_FIELDS_NAME = {
     name: 'date',
     label: 'Date',
     type: 'date',
-    placeholder: 'Enter your Date',
+    placeholder: 'select_date',
     rules: {
       required: 'Date is required',
     },

@@ -188,9 +188,9 @@ const AddInwardComponent = props => {
               />
               <h1 className='text-900 font-bold text-xl md:text-3xl mb-2'>
                 {/* {t("welcome_message")} */}
-                Wingrow Market Pune
+                {t('wingrow_farmers_market')}
               </h1>
-              <div className='text-600 mb-2'>Inward Data</div>
+              <div className='text-600 mb-2'>{t('inward_data')}</div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='mt-5 p-fluid w-full'>
@@ -198,10 +198,10 @@ const AddInwardComponent = props => {
                   <MzAutoComplete
                     control={control}
                     name={FORM_FIELDS_NAME.MARKET.name}
-                    label={FORM_FIELDS_NAME.MARKET.label}
+                    label={t(FORM_FIELDS_NAME.MARKET.label)}
                     optionLabel={FORM_FIELDS_NAME.MARKET.optionLabel}
                     optionValue={FORM_FIELDS_NAME.MARKET.optionValue}
-                    placeholder={FORM_FIELDS_NAME.MARKET.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.MARKET.placeholder)}
                     rules={FORM_FIELDS_NAME.MARKET.rules}
                     isError={!!errors[FORM_FIELDS_NAME.MARKET.name]}
                     errorMsg={getFormErrorMessage(FORM_FIELDS_NAME.MARKET.name)}
@@ -211,7 +211,8 @@ const AddInwardComponent = props => {
                 </div>
                 <div className='mb-2'>
                   <div htmlFor='date' style={{ textAlign: 'start' }}>
-                    Select Date<span className='required'>*</span>
+                    {t('select_date')}
+                    <span className='required'>*</span>
                   </div>
                   <Controller
                     disabled={!watch(FORM_FIELDS_NAME.MARKET.name)}
@@ -222,7 +223,7 @@ const AddInwardComponent = props => {
                       <Calendar
                         {...field}
                         id='date'
-                        placeholder={FORM_FIELDS_NAME.B_DATE.placeholder}
+                        placeholder={t(FORM_FIELDS_NAME.B_DATE.placeholder)}
                         disabledDays={getDisabledDays(marketDay)}
                         maxDate={new Date()}
                         showIcon={true}
@@ -240,7 +241,7 @@ const AddInwardComponent = props => {
                     label={t(FORM_FIELDS_NAME.COMMODITY.label)}
                     optionLabel={FORM_FIELDS_NAME.COMMODITY.optionLabel}
                     optionValue={FORM_FIELDS_NAME.COMMODITY.optionValue}
-                    placeholder={FORM_FIELDS_NAME.COMMODITY.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.COMMODITY.placeholder)}
                     rules={FORM_FIELDS_NAME.COMMODITY.rules}
                     isError={!!errors[FORM_FIELDS_NAME.COMMODITY.name]}
                     errorMsg={getFormErrorMessage(
@@ -255,9 +256,11 @@ const AddInwardComponent = props => {
                   <MzInput
                     control={control}
                     name={FORM_FIELDS_NAME.PURCHASE_QUANTITY.name}
-                    label={FORM_FIELDS_NAME.PURCHASE_QUANTITY.label}
+                    label={t(FORM_FIELDS_NAME.PURCHASE_QUANTITY.label)}
                     type={FORM_FIELDS_NAME.PURCHASE_QUANTITY.type}
-                    placeholder={FORM_FIELDS_NAME.PURCHASE_QUANTITY.placeholder}
+                    placeholder={t(
+                      FORM_FIELDS_NAME.PURCHASE_QUANTITY.placeholder
+                    )}
                     rules={FORM_FIELDS_NAME.PURCHASE_QUANTITY.rules}
                     isError={!!errors[FORM_FIELDS_NAME.PURCHASE_QUANTITY.name]}
                     errorMsg={getFormErrorMessage(
@@ -269,27 +272,27 @@ const AddInwardComponent = props => {
                 <div className=''>
                   <MzInput
                     control={control}
-                    name={FORM_FIELDS_NAME.PURCHASE_RATE.name}
-                    label={FORM_FIELDS_NAME.PURCHASE_RATE.label}
+                    name={t(FORM_FIELDS_NAME.PURCHASE_RATE.name)}
+                    label={t(FORM_FIELDS_NAME.PURCHASE_RATE.label)}
                     type={FORM_FIELDS_NAME.PURCHASE_RATE.type}
-                    placeholder={FORM_FIELDS_NAME.PURCHASE_RATE.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.PURCHASE_RATE.placeholder)}
                     rules={FORM_FIELDS_NAME.PURCHASE_RATE.rules}
                     isError={!!errors[FORM_FIELDS_NAME.PURCHASE_RATE.name]}
                     errorMsg={getFormErrorMessage(
-                      FORM_FIELDS_NAME.PURCHASE_RATE.name
+                      t(FORM_FIELDS_NAME.PURCHASE_RATE.name)
                     )}
                   />
                 </div>
 
                 <div className='flex justify-content-between gap-2 w-full'>
                   <div className='mb-3 w-full'>
-                    <Button label='Add' className='mt-3 border-round-sm' />
+                    <Button label={t('add')} className='mt-3 border-round-sm' />
                   </div>
                   <div className='mb-3 w-full'>
                     <Button
                       onClick={handleClick}
                       disabled={isLoading}
-                      label='submit'
+                      label={t('submit')}
                       type='submit'
                       className='mt-3 border-round-sm'
                     />

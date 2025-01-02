@@ -1,9 +1,9 @@
 export const FORM_FIELDS_NAME = {
   PURCHASE_QUANTITY: {
     name: 'purchaseQuantity',
-    label: 'Purchase Quantity (Rs/Kg)',
+    label: 'purchase_quantity_(Rs/Kg)',
     type: 'number',
-    placeholder: 'Enter Purchase Quantity',
+    placeholder: 'enter_purchase_quantity',
     rules: {
       required: {
         value: true,
@@ -22,9 +22,9 @@ export const FORM_FIELDS_NAME = {
 
   PURCHASE_RATE: {
     name: 'purchaseRate',
-    label: 'Purchase Rate (Rs/Kg)',
+    label: 'purchase_rate_(Rs/Kg)',
     type: 'number',
-    placeholder: 'Enter Purchase Rate',
+    placeholder: 'enter_purchase_rate',
     rules: {
       required: {
         value: true,
@@ -44,7 +44,7 @@ export const FORM_FIELDS_NAME = {
     name: 'date',
     label: 'Date',
     type: 'date',
-    placeholder: 'Enter your Date',
+    placeholder: 'select_date',
     rules: {
       required: 'Date is required',
     },
@@ -52,7 +52,7 @@ export const FORM_FIELDS_NAME = {
 
   MARKET: {
     name: 'market',
-    label: 'Market',
+    label: 'market',
     type: 'dropdown',
     optionLabel: 'name',
     optionValue: 'name',
@@ -67,12 +67,12 @@ export const FORM_FIELDS_NAME = {
       { name: 'Green', value: '#00FF00' },
       { name: 'Blue', value: '#0000FF' },
     ],
-    placeholder: 'Select Market',
+    placeholder: 'select_market',
   },
 
   COMMODITY: {
     name: 'commodity',
-    label: 'Commodity',
+    label: 'commodity',
     type: 'dropdown',
     optionLabel: 'label',
     optionValue: 'label',
@@ -87,6 +87,6 @@ export const FORM_FIELDS_NAME = {
       { name: 'Green', value: '#00FF00' },
       { name: 'Blue', value: '#0000FF' },
     ],
-    placeholder: 'Select Commodity',
+    placeholder: 'select_one_commodity',
   },
 }

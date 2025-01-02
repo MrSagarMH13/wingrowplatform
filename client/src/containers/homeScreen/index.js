@@ -236,7 +236,7 @@ const HomeScreen = () => {
           />
         </div>
         <h1 className='px-2 text-2xl md:text-3xl'>
-          Number of Booked Stalls : {2000}
+        {t("number_of_booked_stalls")} : {2000}
         </h1>
         <SliderComponent slides={slides} />
         <div className='md:px-8 px-2'>

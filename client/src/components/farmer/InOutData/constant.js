@@ -3,7 +3,7 @@ export const FORM_FIELDS_NAME = {
     name: 'date',
     label: 'Date',
     type: 'date',
-    placeholder: 'Enter your Date',
+    placeholder: 'select_date',
     rules: {
       required: {
         value: true,
@@ -13,7 +13,7 @@ export const FORM_FIELDS_NAME = {
   },
   MARKET: {
     name: 'market',
-    label: 'Select Market',
+    label: 'select_market',
     type: 'dropdown',
     optionLabel: 'name',
     optionValue: 'name',
@@ -28,6 +28,6 @@ export const FORM_FIELDS_NAME = {
       { name: 'Green', value: '#00FF00' },
       { name: 'Blue', value: '#0000FF' },
     ],
-    placeholder: 'Select Market',
+    placeholder: 'select_market',
   },
 }

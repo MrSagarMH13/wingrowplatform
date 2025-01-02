@@ -13,6 +13,7 @@ import 'primeicons/primeicons.css'
 import axios from 'axios'
 import { baseUrl } from '../../../services/PostAPI'
 import { API_PATH } from '../../../constant/urlConstant'
+import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 
 const InOutData = props => {
@@ -31,19 +32,21 @@ const InOutData = props => {
   const [filteredInwardList, setFilteredInwardList] = useState([])
   const [marketData, setMarkets] = useState([])
   const [inoutData, setinoutData] = useState('')
+
+  const { t } = useTranslation()
   const data = {
     labels: [
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-      'Sunday',
+      t('monday'),
+      t('tuesday'),
+      t('wednesday'),
+      t('thursday'),
+      t('friday'),
+      t('saturday'),
+      t('sunday'),
     ],
     datasets: [
       {
-        label: 'Market Sales',
+        label: t('market_sales'),
         data: [500, 700, 800, 600, 900, 1200, 950],
         backgroundColor: '#66BB6A',
         borderColor: '#66BB6A',
@@ -162,7 +165,7 @@ const InOutData = props => {
           <Button
             className='p-button-rounded flex justify-content-start'
             icon='pi pi-angle-left mr-2'>
-            back
+            {t('back')}
           </Button>
         </Link>
       </div>
@@ -173,10 +176,10 @@ const InOutData = props => {
               <MzAutoComplete
                 control={control}
                 name={FORM_FIELDS_NAME.MARKET.name}
-                label={FORM_FIELDS_NAME.MARKET.label}
+                label={t(FORM_FIELDS_NAME.MARKET.label)}
                 optionLabel={FORM_FIELDS_NAME.MARKET.optionLabel}
                 optionValue={FORM_FIELDS_NAME.MARKET.optionValue}
-                placeholder={FORM_FIELDS_NAME.MARKET.placeholder}
+                placeholder={t(FORM_FIELDS_NAME.MARKET.placeholder)}
                 rules={FORM_FIELDS_NAME.MARKET.rules}
                 isError={!!errors[FORM_FIELDS_NAME.MARKET.name]}
                 errorMsg={getFormErrorMessage(FORM_FIELDS_NAME.MARKET.name)}
@@ -187,7 +190,8 @@ const InOutData = props => {
             <div className='calendar-section col-6' id='calender'>
               <div className=''>
                 <label htmlFor='date'>
-                  Select Date<span className='required'>*</span>
+                  {t('select_date')}
+                  <span className='required'>*</span>
                 </label>
                 <Controller
                   disabled={!watch(FORM_FIELDS_NAME.MARKET.name)}
@@ -199,7 +203,7 @@ const InOutData = props => {
                       {...field}
                       id='date'
                       name={FORM_FIELDS_NAME.B_DATE.name}
-                      placeholder={FORM_FIELDS_NAME.B_DATE.placeholder}
+                      placeholder={t(FORM_FIELDS_NAME.B_DATE.placeholder)}
                       disabledDays={getDisabledDays(marketDay)}
                       maxDate={new Date()}
                       showIcon={true}
@@ -218,14 +222,14 @@ const InOutData = props => {
             <div className='flex justify-content-end '>
               <Button
                 type='submit'
-                label='Search'
+                label={t('search')}
                 className='border-2 border-round-md md:w-6rem mr-2'
                 disabled={isloading}
               />
             </div>
           </div>
         </form>
-        <h5>Inward Data</h5>
+        <h5>{t('inward_data')}</h5>
         <hr />
         <div className='grid mt-3 mb-3'>
           {inoutData?.inward?.length > 0 ? (
@@ -244,10 +248,10 @@ const InOutData = props => {
                       </div>
                     </div>
                     <div className='text-red-900'>
-                      Purchase Rate: {inward.purchase_rate}
+                      {t('purchase_rate')}: {inward.purchase_rate}
                     </div>
                     <div className='text-red-900'>
-                      Purchase Quantity: {inward.purchase_quantity}
+                      {t('purchase_quantity')}: {inward.purchase_quantity}
                     </div>
                   </div>
                 </div>
@@ -255,12 +259,12 @@ const InOutData = props => {
             ))
           ) : (
             <div className='col-12 text-center'>
-              <p>No inward data available.</p>
+              <p>{t('no_inward_data_available')}</p>
             </div>
           )}
         </div>
 
-        <h5>Outward Data</h5>
+        <h5>{t('outward_data')}</h5>
         <hr />
         <div className='grid mt-3 mb-3'>
           {inoutData?.outward?.length > 0 ? (
@@ -282,11 +286,11 @@ const InOutData = props => {
             ))
           ) : (
             <div className='col-12 text-center'>
-              <p>No outward data available.</p>
+              <p>{t('no_inward_data_available')}</p>
             </div>
           )}
         </div>
-        <h5>Cummulative Sales Data</h5>
+        <h5>{t('cummulative_sales_data')}</h5>
         <hr />
         <div className='grid mt-3 mb-3'>
           <div className='col-12 md:col-6 lg:col-3'>
@@ -295,7 +299,7 @@ const InOutData = props => {
               <div className='overlay'></div>
               <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
                 <div className='text-white text-center'>
-                  Total Purchase Quantity:
+                  {t('Total Purchase Quantity')}:
                 </div>
                 <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
@@ -307,7 +311,7 @@ const InOutData = props => {
               <div className='overlay'></div>
               <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
                 <div className='text-white text-center'>
-                  Total Remaining Sales:
+                  {t('Total Remaining Sales')}:
                 </div>
                 <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
@@ -318,13 +322,15 @@ const InOutData = props => {
               <div className='img-cover'></div>
               <div className='overlay'></div>
               <div className='content font-bold shadow-1 p-3 border-1 border-50 border-round h-full hover:shadow-8'>
-                <div className='text-white text-center'>Total Sales:</div>
+                <div className='text-white text-center'>
+                  {t('Total Sales')}:
+                </div>
                 <div className='text-red-900 text-center text-4xl'>0</div>
               </div>
             </div>
           </div>
         </div>
-        <h5>Day Wise Market</h5>
+        <h5>{t('day_wise_market')}</h5>
         <hr />
         <div className='mb-4'>
           <Chart type='bar' data={data} />

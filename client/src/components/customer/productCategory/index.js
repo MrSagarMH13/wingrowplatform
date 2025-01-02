@@ -71,7 +71,7 @@ export default function ProductCategory() {
         'https://www.popoptiq.com/wp-content/uploads/2019/01/13-26-1.jpg.webp',
       alt: 'Image 9',
       firstHalfTitle: 'Fun & ',
-      secHalfTitle: 'Entertaiment',
+      secHalfTitle: 'Entertainment',
     },
   ]
 
@@ -79,7 +79,9 @@ export default function ProductCategory() {
     <>
       <div className='md:p-4 px-2 mb-2'>
         <div className='flex align-items-center'>
-          <h2 className='mr-2 text-xl md:text-3xl'>Product Categories</h2>
+          <h2 className='mr-2 text-xl md:text-3xl'>
+            {t('product_categories')}
+          </h2>
           <hr className='flex-1 p-2' />
         </div>
         <div className='grid w-full grid-nogutter justify-content-between mb-3'>
