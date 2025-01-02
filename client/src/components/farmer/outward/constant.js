@@ -1,9 +1,9 @@
 export const FORM_FIELDS_NAME = {
   REMAINING_SALE: {
     name: 'remainingSale',
-    label: 'Remaining Sale (Rs/Kg)',
+    label: 'remaining_sale_(Rs/Kg)',
     type: 'number',
-    placeholder: 'Enter Remaining Sale',
+    placeholder: 'enter_remaining_sale',
     rules: {
       required: {
         value: true,
@@ -21,18 +21,18 @@ export const FORM_FIELDS_NAME = {
   },
   B_DATE: {
     name: 'date',
-    label: 'Date',
+    label: 'date',
     type: 'date',
-    placeholder: 'Enter your Date',
+    placeholder: 'select_date',
     rules: {
       required: 'Date is required',
     },
   },
   SALE_RATE: {
     name: 'saleRate',
-    label: 'Sale Rate (Rs/Kg)',
+    label: 'sale_rate_(Rs/Kg)',
     type: 'number',
-    placeholder: 'Enter Sale Rate',
+    placeholder: 'enter_sale_rate',
     rules: {
       required: {
         value: true,
@@ -51,7 +51,7 @@ export const FORM_FIELDS_NAME = {
 
   MARKET: {
     name: 'market',
-    label: 'Market',
+    label: 'market',
     type: 'dropdown',
     optionLabel: 'name',
     optionValue: 'name',
@@ -66,12 +66,12 @@ export const FORM_FIELDS_NAME = {
       { name: 'Green', value: '#00FF00' },
       { name: 'Blue', value: '#0000FF' },
     ],
-    placeholder: 'Select Market',
+    placeholder: 'select_market',
   },
 
   COMMODITY: {
     name: 'commodity',
-    label: 'Commodity',
+    label: 'commodity',
     type: 'dropdown',
     optionLabel: 'label',
     optionValue: 'label',
@@ -86,6 +86,6 @@ export const FORM_FIELDS_NAME = {
       { name: 'Green', value: '#00FF00' },
       { name: 'Blue', value: '#0000FF' },
     ],
-    placeholder: 'Select Commodity',
+    placeholder: 'select_one_commodity',
   },
 }

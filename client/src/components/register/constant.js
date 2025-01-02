@@ -46,7 +46,7 @@ export const FORM_FIELDS_NAME = {
     name: 'type',
     label: 'signup.form.Role',
     type: 'text',
-    placeholder: 'OTPFORM.selectTypeLabel',
+    placeholder: 'OTPFORM.select_your_role',
     rules: {
       required: 'signup.error.Role',
     },
@@ -54,9 +54,9 @@ export const FORM_FIELDS_NAME = {
 
   PRODUCER: {
     name: 'producer',
-    label: 'Producer Type',
+    label: 'producer_type',
     type: 'text',
-    placeholder: 'Enter Producer Type',
+    placeholder: 'select_producer_type',
     rules: {
       required: 'Producer is required',
     },

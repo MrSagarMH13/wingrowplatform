@@ -299,7 +299,8 @@ const RegisterComponent = props => {
                             optionLabel={'name'}
                             optionValue={'value'}
                             options={data.producer}
-                            label={FORM_FIELDS_NAME.PRODUCER.label}
+                            label={t(FORM_FIELDS_NAME.PRODUCER.label)}
+                            placeholder={t(FORM_FIELDS_NAME.PRODUCER.placeholder)}
                             rules={FORM_FIELDS_NAME.PRODUCER.rules}
                             isError={errors[FORM_FIELDS_NAME.PRODUCER.name]}
                             errorMsg={getFormErrorMessage(

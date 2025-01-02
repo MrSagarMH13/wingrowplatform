@@ -151,7 +151,7 @@ const MarketComponent = props => {
                   value={selectedState}
                   options={states}
                   onChange={handleStateChange}
-                  placeholder='Select a State'
+                  placeholder={t('select_state')}
                   className='m-3'
                 />
 
@@ -160,7 +160,7 @@ const MarketComponent = props => {
                     value={selectedCity}
                     options={cities[selectedState] || []}
                     onChange={handleCityChange}
-                    placeholder='Select a City'
+                    placeholder={t('select_city')}
                   />
                 )}
 
@@ -168,11 +168,11 @@ const MarketComponent = props => {
                   <>
                     <h2 className='mt-3'>
                       {t(
-                        `select_market_in_${
+                        `${
                           cities[selectedState].find(
                             city => city.value === selectedCity
                           )?.label
-                        }`
+                        } ${t('select_market')}`
                       )}
                     </h2>
                     <div className='grid md:px-5 py-3'>
@@ -217,7 +217,7 @@ const MarketComponent = props => {
                     </div>
                   </>
                 ) : (
-                  <h2>Please select state and city</h2>
+                  <h2>{t('please_select_state_and_city')}</h2>
                 )}
               </div>
             </div>

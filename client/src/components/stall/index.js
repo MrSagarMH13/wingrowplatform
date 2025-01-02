@@ -706,21 +706,22 @@ const StallComponent = props => {
             </div>
             <div className='flex row justify-content-between align-items-center'>
               <div className='market-dropdown-section col-6'>
-                <label htmlFor='market'>Select Market</label>
+                <label htmlFor='market'>{t('select_market')}</label>
                 <Dropdown
                   id='market'
                   value={selectedMarket}
                   options={marketOptions}
                   onChange={handleMarket}
                   disabled={isDisabled}
-                  placeholder='Choose a market'
+                  placeholder={t('select_market')}
                   className='w-full'
                 />
               </div>
               <div className='calendar-section col-6'>
                 <div className=''>
                   <label htmlFor='date'>
-                    Select Date<span className='required'>*</span>
+                    {t('please_select_date')}
+                    <span className='required'>*</span>
                   </label>
                   <Controller
                     name={FORM_FIELDS_NAME.B_DATE.name}
@@ -732,7 +733,7 @@ const StallComponent = props => {
                         id='date'
                         value={dates[selectedMarket]}
                         onChange={e => handleDateChange(e, field)}
-                        placeholder={FORM_FIELDS_NAME.B_DATE.placeholder}
+                        placeholder={t(FORM_FIELDS_NAME.B_DATE.placeholder)}
                         disabledDays={getDisabledDays(marketDay)}
                         minDate={dat}
                         showIcon={true}
@@ -750,9 +751,11 @@ const StallComponent = props => {
             </div>
             <div className='border-green-200 border-1 p-2'>
               <div className='summary'>
-                <span>Total stalls: {stallList.length}</span>
                 <span>
-                  Available stalls:{' '}
+                  {t('total_stalls')}: {stallList.length}
+                </span>
+                <span>
+                  {t('available_stalls')}:{' '}
                   {stallPositions.flat().filter(isStall => isStall.value)
                     .length -
                     (selectedStallsMap[selectedMarket]?.[
@@ -953,7 +956,7 @@ const StallComponent = props => {
 
               <hr />
               <div className='total-amount'>
-                <span>Total Amount</span>
+                <span>{t('total_amount')}</span>
                 <span>
                   {' '}
                   {totalAmount} <i className='pi pi-indian-rupee' />

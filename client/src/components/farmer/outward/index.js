@@ -195,9 +195,9 @@ const AddOutwardComponent = props => {
                 className='mb-2 w-5rem flex-shrink-0'
               />
               <h1 className='text-900 font-bold text-xl md:text-3xl mb-2'>
-                Wingrow Market Pune
+                {t('wingrow_market')}
               </h1>
-              <div className='text-600 mb-2'>Outward Data</div>
+              <div className='text-600 mb-2'>{t('outward_data')}</div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className='mt-5 p-fluid w-full'>
@@ -208,7 +208,7 @@ const AddOutwardComponent = props => {
                     label={t(FORM_FIELDS_NAME.MARKET.label)}
                     optionLabel={FORM_FIELDS_NAME.MARKET.optionLabel}
                     optionValue={FORM_FIELDS_NAME.MARKET.optionValue}
-                    placeholder={FORM_FIELDS_NAME.MARKET.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.MARKET.placeholder)}
                     rules={FORM_FIELDS_NAME.MARKET.rules}
                     isError={!!errors[FORM_FIELDS_NAME.MARKET.name]}
                     errorMsg={getFormErrorMessage(FORM_FIELDS_NAME.MARKET.name)}
@@ -218,7 +218,8 @@ const AddOutwardComponent = props => {
                 </div>
                 <div className='mb-2'>
                   <div htmlFor='date' style={{ textAlign: 'start' }}>
-                    Select Date<span className='required'>*</span>
+                    {t('select_date')}
+                    <span className='required'>*</span>
                   </div>
                   <Controller
                     disabled={!watch(FORM_FIELDS_NAME.MARKET.name)}
@@ -229,7 +230,7 @@ const AddOutwardComponent = props => {
                       <Calendar
                         {...field}
                         id='date'
-                        placeholder={FORM_FIELDS_NAME.B_DATE.placeholder}
+                        placeholder={t(FORM_FIELDS_NAME.B_DATE.placeholder)}
                         disabledDays={getDisabledDays(marketDay)}
                         maxDate={new Date()}
                         showIcon={true}
@@ -244,10 +245,10 @@ const AddOutwardComponent = props => {
                   <MzAutoComplete
                     control={control}
                     name={FORM_FIELDS_NAME.COMMODITY.name}
-                    label={FORM_FIELDS_NAME.COMMODITY.label}
+                    label={t(FORM_FIELDS_NAME.COMMODITY.label)}
                     optionLabel={FORM_FIELDS_NAME.COMMODITY.optionLabel}
                     optionValue={FORM_FIELDS_NAME.COMMODITY.optionValue}
-                    placeholder={FORM_FIELDS_NAME.COMMODITY.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.COMMODITY.placeholder)}
                     rules={FORM_FIELDS_NAME.COMMODITY.rules}
                     isError={!!errors[FORM_FIELDS_NAME.COMMODITY.name]}
                     errorMsg={getFormErrorMessage(
@@ -262,9 +263,9 @@ const AddOutwardComponent = props => {
                   <MzInput
                     control={control}
                     name={FORM_FIELDS_NAME.REMAINING_SALE.name}
-                    label={FORM_FIELDS_NAME.REMAINING_SALE.label}
+                    label={t(FORM_FIELDS_NAME.REMAINING_SALE.label)}
                     type={FORM_FIELDS_NAME.REMAINING_SALE.type}
-                    placeholder={FORM_FIELDS_NAME.REMAINING_SALE.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.REMAINING_SALE.placeholder)}
                     rules={FORM_FIELDS_NAME.REMAINING_SALE.rules}
                     isError={!!errors[FORM_FIELDS_NAME.REMAINING_SALE.name]}
                     errorMsg={getFormErrorMessage(
@@ -277,9 +278,9 @@ const AddOutwardComponent = props => {
                   <MzInput
                     control={control}
                     name={FORM_FIELDS_NAME.SALE_RATE.name}
-                    label={FORM_FIELDS_NAME.SALE_RATE.label}
+                    label={t(FORM_FIELDS_NAME.SALE_RATE.label)}
                     type={FORM_FIELDS_NAME.SALE_RATE.type}
-                    placeholder={FORM_FIELDS_NAME.SALE_RATE.placeholder}
+                    placeholder={t(FORM_FIELDS_NAME.SALE_RATE.placeholder)}
                     rules={FORM_FIELDS_NAME.SALE_RATE.rules}
                     isError={!!errors[FORM_FIELDS_NAME.SALE_RATE.name]}
                     errorMsg={getFormErrorMessage(
@@ -290,13 +291,13 @@ const AddOutwardComponent = props => {
 
                 <div className='flex justify-content-between gap-2 w-full'>
                   <div className='mb-3 w-full'>
-                    <Button label='Add' className='mt-3 border-round-sm' />
+                    <Button label={t('add')} className='mt-3 border-round-sm' />
                   </div>
                   <div className='mb-3 w-full'>
                     <Button
                       onClick={handleClick}
                       disabled={isLoading}
-                      label='submit'
+                      label={t('submit')}
                       type='submit'
                       className='mt-3 border-round-sm'
                     />
